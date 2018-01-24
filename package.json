@@ -5,11 +5,15 @@
   "repository": "git@github.com:instagrambot/instabot.js.git",
   "author": "Ruslan Tatyshev <ruslan.tatyshev@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
   "devDependencies": {
     "eslint": "^4.16.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.5.1"
+    "eslint-plugin-react": "^7.5.1",
+    "jest": "^22.1.4"
   }
 }
