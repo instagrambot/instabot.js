@@ -5,3 +5,6 @@ node_js:
 script:
   - yarn lint
   - yarn test
+cache:
+  directories:
+    - node_modules
