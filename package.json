@@ -17,6 +17,7 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.5.1",
+    "given2": "^2.1.1",
     "jest": "^22.1.4",
     "poi": "^9.6.13",
     "poi-preset-react": "^9.2.1"
