@@ -9,7 +9,7 @@
     "test": "jest",
     "start": "poi dev src/index.jsx",
     "build": "NODE_ENV=production poi build",
-    "lint": "eslint --ext .js,.vue src"
+    "lint": "eslint --ext .js,.jsx src"
   },
   "devDependencies": {
     "eslint": "^4.16.0",
