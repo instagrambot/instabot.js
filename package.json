@@ -8,7 +8,7 @@
   "scripts": {
     "test": "jest",
     "start": "poi dev src/index.jsx",
-    "build": "NODE_ENV=production poi build",
+    "build": "NODE_ENV=production poi build src/index.jsx",
     "lint": "eslint --ext .js,.jsx src"
   },
   "devDependencies": {
