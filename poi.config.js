@@ -6,12 +6,15 @@ const isProd = process.env.NODE_ENV === 'production';
 module.exports = {
   entry: 'src/index.jsx',
   sourceMap: isProd ? false : 'source-map',
-  homepage: '',
+  homepage: './',
   karma: {
     frameworks: ['jasmine'],
     browsers: ['ChromeHeadless'],
     reporters: ['spec', 'kjhtml'],
     proxies: {},
+  },
+  extendWebpack(config) {
+    config.target('electron-renderer');
   },
   presets: [
     require('poi-preset-react')(),

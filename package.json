@@ -2,16 +2,26 @@
   "name": "instabot.js",
   "version": "0.0.0",
   "main": "index.js",
+  "description": "instabot desktop version",
   "repository": "git@github.com:instagrambot/instabot.js.git",
   "author": "Ruslan Tatyshev <ruslan.tatyshev@gmail.com>",
   "license": "MIT",
   "scripts": {
     "test": "poi test",
-    "start": "poi dev",
-    "build": "NODE_ENV=production poi build",
+    "start": "electron .",
+    "build": "NODE_ENV=production poi build && electron-builder build",
     "lint": "eslint --ext .js,.jsx src"
   },
+  "build": {
+    "productName": "Instabot",
+    "files": ["index.js", "dist/**/*"],
+    "directories": {
+      "output": "builds"
+    }
+  },
   "devDependencies": {
+    "electron": "^1.7.11",
+    "electron-builder": "^19.55.2",
     "eslint": "^4.16.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
@@ -27,6 +37,7 @@
     "poi-preset-react": "^9.2.1"
   },
   "dependencies": {
+    "electron-is-dev": "^0.3.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   }
