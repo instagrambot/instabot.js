@@ -6,9 +6,9 @@
   "author": "Ruslan Tatyshev <ruslan.tatyshev@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest",
-    "start": "poi dev src/index.jsx",
-    "build": "NODE_ENV=production poi build src/index.jsx",
+    "test": "poi test",
+    "start": "poi dev",
+    "build": "NODE_ENV=production poi build",
     "lint": "eslint --ext .js,.jsx src"
   },
   "devDependencies": {
@@ -19,7 +19,11 @@
     "eslint-plugin-react": "^7.5.1",
     "given2": "^2.1.1",
     "jest": "^22.1.4",
+    "karma-jasmine": "^1.1.1",
+    "karma-jasmine-html-reporter": "^0.2.2",
+    "karma-spec-reporter": "^0.0.32",
     "poi": "^9.6.13",
+    "poi-preset-karma": "^9.2.4",
     "poi-preset-react": "^9.2.1"
   },
   "dependencies": {
