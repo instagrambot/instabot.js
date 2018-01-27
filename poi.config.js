@@ -9,7 +9,7 @@ module.exports = {
   homepage: './',
   karma: {
     frameworks: ['jasmine'],
-    browsers: ['ChromeHeadless'],
+    browsers: ['Electron'],
     reporters: ['spec', 'kjhtml'],
     proxies: {},
   },
