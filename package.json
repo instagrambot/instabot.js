@@ -7,9 +7,10 @@
   "author": "Ruslan Tatyshev <ruslan.tatyshev@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "poi test",
     "start": "electron .",
     "build": "NODE_ENV=production poi build && electron-builder build",
+    "test": "poi test",
+    "debug": "poi test --watch",
     "lint": "eslint --ext .js,.jsx src"
   },
   "build": {
