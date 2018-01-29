@@ -1,3 +1,7 @@
 import React from 'react';
 
-export default () => <h1>Hello Instabot!</h1>;
+export default () => (
+  <div>
+    <h1>Hello Instabot!</h1>
+  </div>
+);
