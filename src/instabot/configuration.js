@@ -11,14 +11,18 @@ const CONFIG_FOLDER = '.instabot';
 export default class Configuration {
   constructor() {
     this.rootDir = path.join(os.homedir(), CONFIG_FOLDER);
-    this.bootstrap();
+    this.sync();
   }
 
-  bootstrap() {
+  ensureRootDir() {
     return new Promise((resolve, reject) => {
       stat(this.rootDir).catch(() => {
         mkdir(this.rootDir).catch(reject);
       });
     });
+  }
+
+  sync() {
+    return this.ensureRootDir();
   }
 }
