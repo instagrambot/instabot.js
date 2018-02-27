@@ -1,7 +1,13 @@
 {
   "name": "instabot.js",
   "license": "Apache-2.0",
-  "engines" : {
-    "node" : "8.2.1"
+  "scripts": {
+    "postinstall": "lerna bootstrap"
+  },
+  "engines": {
+    "node": "8.2.1"
+  },
+  "devDependencies": {
+    "lerna": "^2.9.0"
   }
 }
