@@ -1,1 +1,1 @@
-module.exports = 'instabot.js';
+module.exports = 'instabot.js'
