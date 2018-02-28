@@ -1,0 +1,6 @@
+{
+  "name": "@instabot.js/instagram",
+  "description": "Instagram related apis",
+  "version": "0.0.0",
+  "main": "index.js"
+}

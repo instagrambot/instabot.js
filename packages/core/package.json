@@ -1,6 +1,0 @@
-{
-  "name": "@instabot.js/core",
-  "description": "An Instagram interaction apis",
-  "version": "0.0.0",
-  "main": "index.js"
-}
