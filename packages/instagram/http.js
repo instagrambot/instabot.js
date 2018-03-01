@@ -9,19 +9,20 @@ const adapter = request.defaults({
 })
 
 module.exports = class Http {
-  async prepare () {
+  async prepareCsrf () {
+    if (this.csrf) return
+
     const cookies = await adapter
       .get('/', { resolveWithFullResponse: true })
       .then(resp => resp.headers['set-cookie'] || [])
       .then(cookies => cookies.map(Cookie.parse))
 
     const csrf = cookies.find(x => x.key === 'csrftoken')
-
     if (csrf) this.csrf = csrf.value
   }
 
   async request (options) {
-    await this.prepare()
+    await this.prepareCsrf()
 
     const defaults = {
       headers: {
