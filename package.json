@@ -8,7 +8,7 @@
     "lint": "eslint packages/**/*.js"
   },
   "engines": {
-    "node": "8.2.1"
+    "node": "8.9.3"
   },
   "devDependencies": {
     "eslint": "^4.18.1",
@@ -26,6 +26,17 @@
     "extends": [
       "standard",
       "standard-react"
+    ],
+    "rules": {
+      "no-debugger": [0]
+    },
+    "overrides": [
+      {
+        "files": ["**/*.spec.js"],
+        "env": {
+          "jasmine": true
+        }
+      }
     ]
   }
 }

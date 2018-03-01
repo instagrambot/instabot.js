@@ -2,5 +2,19 @@
   "name": "@instabot.js/instagram",
   "description": "Instagram related apis",
   "version": "0.0.0",
-  "main": "index.js"
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
+  },
+  "devDependencies": {
+    "jest": "^22.4.2"
+  },
+  "dependencies": {
+    "cookie": "^0.3.1",
+    "deepmerge": "^2.0.1",
+    "lodash": "^4.17.5",
+    "request": "^2.83.0",
+    "request-promise-native": "^1.0.5"
+  }
 }
