@@ -1,37 +1,33 @@
 const request = require('request-promise-native')
 const deepmerge = require('deepmerge')
-const { Cookie } = require('tough-cookie')
+const csrf = require('./csrf.js')
 
 const BASE_URL = 'https://www.instagram.com/'
 
-const adapter = request.defaults({
-  baseUrl: BASE_URL
-})
-
 module.exports = class Http {
-  async prepareCsrf () {
-    if (this.csrf) return
+  constructor () {
+    this.csrf = null
 
-    const cookies = await adapter
-      .get('/', { resolveWithFullResponse: true })
-      .then(resp => resp.headers['set-cookie'] || [])
-      .then(cookies => cookies.map(Cookie.parse))
+    this.adapter = request.defaults({
+      baseUrl: BASE_URL,
+      Referer: BASE_URL
+    })
+  }
 
-    const csrf = cookies.find(x => x.key === 'csrftoken')
-    if (csrf) this.csrf = csrf.value
+  async prepare () {
+    if (this.csrf == null) this.csrf = await csrf()
   }
 
   async request (options) {
-    await this.prepareCsrf()
+    await this.prepare()
 
     const defaults = {
       headers: {
-        'X-CSRFToken': this.csrf,
-        Referer: BASE_URL
+        'X-CSRFToken': this.csrf
       }
     }
 
-    return adapter(deepmerge(defaults, options))
+    return this.adapter(deepmerge(defaults, options))
   }
 
   get (uri, options) {
