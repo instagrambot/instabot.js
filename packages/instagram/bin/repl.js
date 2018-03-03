@@ -6,17 +6,17 @@ const r = repl.start('> ')
 Object.defineProperty(r.context, 'Instagram', {
   configurable: false,
   enumerable: true,
-  value: require('../index')
+  value: require('../src/index')
 })
 
 Object.defineProperty(r.context, 'Http', {
   configurable: false,
   enumerable: true,
-  value: require('../http')
+  value: require('../src/http')
 })
 
 Object.defineProperty(r.context, 'csrf', {
   configurable: false,
   enumerable: true,
-  value: require('../csrf')
+  value: require('../src/csrf')
 })
