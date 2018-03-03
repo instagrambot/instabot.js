@@ -14,9 +14,3 @@ Object.defineProperty(r.context, 'Http', {
   enumerable: true,
   value: require('../src/http')
 })
-
-Object.defineProperty(r.context, 'csrf', {
-  configurable: false,
-  enumerable: true,
-  value: require('../src/csrf')
-})

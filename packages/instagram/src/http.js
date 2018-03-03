@@ -1,33 +1,38 @@
 const request = require('request-promise-native')
 const deepmerge = require('deepmerge')
-const csrf = require('./csrf.js')
+const Cookies = require('./cookies')
 
 const BASE_URL = 'https://www.instagram.com/'
 
 module.exports = class Http {
   constructor () {
-    this.csrf = null
+    this.cookies = new Cookies()
 
-    this.adapter = request.defaults({
+    this.send = request.defaults({
       baseUrl: BASE_URL,
-      Referer: BASE_URL
+      Referer: BASE_URL,
+      resolveWithFullResponse: true
     })
   }
 
-  async prepare () {
-    if (this.csrf == null) this.csrf = await csrf()
-  }
-
-  async request (options) {
-    await this.prepare()
-
+  async request (requestOptions) {
     const defaults = {
+      jar: this.cookies.toJar(),
       headers: {
-        'X-CSRFToken': this.csrf
+        'X-CSRFToken': this.cookies.valueOf('csrftoken')
       }
     }
 
-    return this.adapter(deepmerge(defaults, options))
+    const options = deepmerge(defaults, requestOptions)
+    const resp = await this.send(options)
+
+    // Like request.jar() but out implementation
+    if (options.jar) {
+      delete options.jar
+      this.cookies.fromResponse(resp)
+    }
+
+    return resp
   }
 
   get (uri, options) {
