@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "main": "index.js",
   "scripts": {
+    "repl": "node bin/repl.js",
     "test": "jest",
     "debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
   },
