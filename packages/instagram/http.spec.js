@@ -1,11 +1,20 @@
-jest.mock('request-promise-native')
-jest.mock('./csrf.js', () => () => Promise.resolve('CSRF_MOCK'))
-
-const given = require('given2')
-const request = require('request-promise-native')
-const Http = require('./http')
-
 describe('http', () => {
+  jest.mock('request-promise-native', () => {
+    function fn () {}
+
+    fn.defaults = () => fn
+    fn.get = () => {}
+    fn.post = () => {}
+
+    return fn
+  })
+
+  jest.mock('./csrf.js', () => () => Promise.resolve('CSRF_MOCK'))
+
+  const given = require('given2')
+  const request = require('request-promise-native')
+  const Http = require('./http')
+
   given('subject', () => new Http())
 
   describe('.constructor', () => {
