@@ -8,6 +8,10 @@ module.exports = class Cookies {
     this.values = response ? this.fromResponse(response) : []
   }
 
+  isEmpty () {
+    return this.values.length === 0
+  }
+
   fromResponse (response) {
     const setCookie = response.headers['set-cookie']
 

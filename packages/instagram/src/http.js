@@ -15,22 +15,32 @@ module.exports = class Http {
     })
   }
 
-  async request (requestOptions) {
-    const defaults = {
+  optionsFrom (options) {
+    return deepmerge({
       jar: this.cookies.toJar(),
       headers: {
         'X-CSRFToken': this.cookies.valueOf('csrftoken')
       }
+    }, options)
+  }
+
+  async request (options) {
+    const { cookies } = this
+    const opts = this.optionsFrom(options)
+
+    // We use custom jar
+    const jar = options.jar
+    delete options.jar
+
+    // Prepare cookies if first request
+    if (cookies.isEmpty()) {
+      const resp = await this.send.get('/')
+      cookies.fromResponse(resp)
     }
 
-    const options = deepmerge(defaults, requestOptions)
-    const resp = await this.send(options)
+    const resp = await this.send(opts)
 
-    // Like request.jar() but our implementation
-    if (options.jar) {
-      delete options.jar
-      this.cookies.fromResponse(resp)
-    }
+    if (jar) cookies.fromResponse(resp)
 
     return resp
   }
