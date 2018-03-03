@@ -26,7 +26,7 @@ module.exports = class Http {
     const options = deepmerge(defaults, requestOptions)
     const resp = await this.send(options)
 
-    // Like request.jar() but out implementation
+    // Like request.jar() but our implementation
     if (options.jar) {
       delete options.jar
       this.cookies.fromResponse(resp)
