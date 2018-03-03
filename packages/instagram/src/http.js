@@ -12,6 +12,8 @@ module.exports = class Http {
     this.send = request.defaults({
       baseUrl: BASE_URL,
       resolveWithFullResponse: true,
+      gzip: true,
+      json: true,
       headers: {
         'origin': BASE_URL,
         'referer': BASE_URL,

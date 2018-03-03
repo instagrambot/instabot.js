@@ -13,4 +13,9 @@ module.exports = class Instagram {
 
     return resp.body
   }
+
+  async account (name) {
+    const resp = await this.http.get(`/${name}?__a=1`)
+    return resp.body
+  }
 }

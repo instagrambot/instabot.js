@@ -15,3 +15,9 @@ Object.defineProperty(r.context, 'ig', {
   enumerable: true,
   value: new Instagram()
 })
+
+Object.defineProperty(r.context, 'resolve', {
+  configurable: false,
+  enumerable: true,
+  value: promise => promise.then(console.log)
+})
