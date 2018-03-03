@@ -1,16 +1,17 @@
 #!/usr/bin/env node
 
+const Instagram = require('../src/index')
 const repl = require('repl')
 const r = repl.start('> ')
 
 Object.defineProperty(r.context, 'Instagram', {
   configurable: false,
   enumerable: true,
-  value: require('../src/index')
+  value: Instagram
 })
 
-Object.defineProperty(r.context, 'Http', {
+Object.defineProperty(r.context, 'ig', {
   configurable: false,
   enumerable: true,
-  value: require('../src/http')
+  value: new Instagram()
 })
