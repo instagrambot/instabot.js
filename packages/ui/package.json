@@ -25,7 +25,10 @@
       "browser": true
     },
     "rules": {
-      "react/jsx-filename-extension": [0]
+      "react/jsx-filename-extension": [0],
+      "react/prop-types": [2, {
+        "ignore": ["children"]
+      }]
     },
     "overrides": [
       {
