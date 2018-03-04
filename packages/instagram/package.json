@@ -3,6 +3,7 @@
   "description": "Instagram related apis",
   "version": "0.0.0",
   "main": "index.js",
+  "license": "Apache-2.0",
   "scripts": {
     "repl": "node bin/repl.js",
     "test": "jest",
