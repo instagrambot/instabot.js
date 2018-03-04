@@ -1,20 +1,20 @@
 #!/usr/bin/env node
 
-const Instagram = require('../src/index');
+const WebApi = require('../src/index');
 const repl = require('repl');
 
 const r = repl.start('> ');
 
-Object.defineProperty(r.context, 'Instagram', {
+Object.defineProperty(r.context, 'WebApi', {
   configurable: false,
   enumerable: true,
-  value: Instagram,
+  value: WebApi,
 });
 
-Object.defineProperty(r.context, 'ig', {
+Object.defineProperty(r.context, 'api', {
   configurable: false,
   enumerable: true,
-  value: new Instagram(),
+  value: new WebApi(),
 });
 
 Object.defineProperty(r.context, 'resolve', {

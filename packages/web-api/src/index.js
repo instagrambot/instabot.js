@@ -1,6 +1,6 @@
 const Http = require('./http');
 
-module.exports = class Instagram {
+module.exports = class WebApi {
   constructor() {
     this.http = new Http();
   }
