@@ -15,26 +15,34 @@
   },
   "devDependencies": {
     "eslint": "^4.18.2",
-    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.9.0",
     "given2": "^2.1.1",
     "jest": "^22.4.2"
   },
   "dependencies": {
     "deepmerge": "^2.0.1",
+    "lodash": "^4.17.5",
     "request": "^2.83.0",
     "request-promise-native": "^1.0.5",
     "tough-cookie": "^2.3.4"
   },
   "eslintConfig": {
     "root": true,
-    "extends": "airbnb",
+    "extends": "airbnb-base",
     "env": {
       "node": true
     },
+    "rules": {
+      "no-debugger": [
+        0
+      ]
+    },
     "overrides": [
       {
-        "files": ["**/*.spec.js"],
+        "files": [
+          "**/*.spec.js"
+        ],
         "env": {
           "jest": true
         }

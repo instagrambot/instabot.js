@@ -1,4 +1,6 @@
 const Http = require('./http');
+const get = require('lodash/get');
+const { FOLLOWERS_GRAPH } = require('./constants');
 
 module.exports = class WebApi {
   constructor() {
@@ -17,6 +19,15 @@ module.exports = class WebApi {
   async account(name) {
     const resp = await this.http.get(`/${name}?__a=1`);
     return resp.body;
+  }
+
+  async followers(userId, limit = 20) {
+    const resp = await this.http.graphql(FOLLOWERS_GRAPH, {
+      id: userId,
+      first: limit,
+    });
+
+    return get(resp.body, 'data.user.edge_followed_by');
   }
 
   async follow(userId) {
