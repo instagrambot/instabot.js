@@ -22,3 +22,9 @@ Object.defineProperty(r.context, 'resolve', {
   enumerable: true,
   value: promise => promise.then(console.log), // eslint-disable-line no-console
 });
+
+Object.defineProperty(r.context, 'wait', {
+  configurable: false,
+  enumerable: true,
+  set: promise => promise.then(console.log), // eslint-disable-line no-console
+});
