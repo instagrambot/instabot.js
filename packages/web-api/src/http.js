@@ -2,8 +2,7 @@ const request = require('request-promise-native');
 const deepmerge = require('deepmerge');
 const Cookies = require('./cookies');
 
-const BASE_URL = 'https://www.instagram.com/';
-const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36 OPR/50.0.2762.67';
+const { BASE_URL, USER_AGENT } = require('./constants');
 
 module.exports = class Http {
   constructor() {

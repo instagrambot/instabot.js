@@ -2,8 +2,7 @@
 
 const request = require('request-promise-native');
 const { Cookie } = require('tough-cookie');
-
-const BASE_URL = 'https://www.instagram.com/';
+const { BASE_URL } = require('./constants');
 
 module.exports = class Cookies {
   constructor(response) {
