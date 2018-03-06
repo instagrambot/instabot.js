@@ -7,6 +7,15 @@ module.exports = class WebApi {
     this.http = new Http();
   }
 
+  graphql(queryHash, variables = {}) {
+    return this.http.get('/graphql/query/', {
+      qs: {
+        query_hash: queryHash,
+        variables: JSON.stringify(variables),
+      },
+    });
+  }
+
   async login(username, password) {
     const resp = await this.http.post('/accounts/login/ajax/', {
       jar: true,
@@ -22,7 +31,7 @@ module.exports = class WebApi {
   }
 
   async followers(userId, limit = 20) {
-    const resp = await this.http.graphql(FOLLOWERS_GRAPH, {
+    const resp = await this.graphql(FOLLOWERS_GRAPH, {
       id: userId,
       first: limit,
     });

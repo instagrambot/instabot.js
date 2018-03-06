@@ -61,13 +61,4 @@ module.exports = class Http {
   post(uri, options) {
     return this.request({ method: 'POST', uri, ...options });
   }
-
-  graphql(queryHash, variables = {}) {
-    return this.get('/graphql/query/', {
-      qs: {
-        query_hash: queryHash,
-        variables: JSON.stringify(variables),
-      },
-    });
-  }
 };
