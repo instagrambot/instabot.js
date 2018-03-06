@@ -1,8 +1,11 @@
 const request = require('request-promise-native');
 const deepmerge = require('deepmerge');
+const pick = require('lodash/pick');
 const Cookies = require('./cookies');
 
 const { BASE_URL, USER_AGENT } = require('./constants');
+
+const reduceResp = resp => pick(resp, ['body', 'headers', 'statusCode']);
 
 module.exports = class Http {
   constructor() {
@@ -51,7 +54,9 @@ module.exports = class Http {
 
     if (jar) this.cookies.fromResponse(resp);
 
-    return resp;
+    if (options.resolveWithFullResponse) return resp;
+
+    return reduceResp(resp);
   }
 
   get(uri, options) {
