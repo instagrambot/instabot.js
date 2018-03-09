@@ -4,6 +4,7 @@ const WebApi = require('../src/index');
 const repl = require('repl');
 
 const r = repl.start('> ');
+let lastWait;
 
 Object.defineProperty(r.context, 'WebApi', {
   configurable: false,
@@ -26,5 +27,11 @@ Object.defineProperty(r.context, 'resolve', {
 Object.defineProperty(r.context, 'wait', {
   configurable: false,
   enumerable: true,
-  set: promise => promise.then(console.log), // eslint-disable-line no-console
+  set: (promise) => {
+    promise.then((resp) => {
+      lastWait = resp;
+      console.log(resp); // eslint-disable-line no-console
+    });
+  },
+  get: () => lastWait,
 });
