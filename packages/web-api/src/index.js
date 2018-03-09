@@ -32,7 +32,7 @@ module.exports = class WebApi {
 
   async followers(userId, limit = 20) {
     const resp = await this.graphql(FOLLOWERS_GRAPH, {
-      id: userId,
+      id: String(userId),
       first: limit,
     });
 
