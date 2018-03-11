@@ -1,9 +1,9 @@
 /* eslint-disable consistent-return */
 
-const {
-  uniqWith, uniqBy, isEqual, omit,
-} = require('lodash');
-
+const uniqWith = require('lodash/uniqWith');
+const uniqBy = require('lodash/uniqBy');
+const isEqual = require('lodash/isEqual');
+const omit = require('lodash/omit');
 const request = require('request-promise-native');
 const { Cookie } = require('tough-cookie');
 const { BASE_URL } = require('./constants');
