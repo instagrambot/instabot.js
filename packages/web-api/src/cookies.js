@@ -1,5 +1,9 @@
 /* eslint-disable consistent-return */
 
+const {
+  uniqWith, uniqBy, isEqual, omit,
+} = require('lodash');
+
 const request = require('request-promise-native');
 const { Cookie } = require('tough-cookie');
 const { BASE_URL } = require('./constants');
@@ -16,9 +20,12 @@ module.exports = class Cookies {
   fromResponse(response) {
     const setCookie = response.headers['set-cookie'];
 
-    this.values = setCookie
+    const cookies = setCookie
       .map(Cookie.parse)
-      .map(cookie => cookie.toJSON());
+      .map(cookie => omit(cookie.toJSON(), ['expires', 'creation', 'maxAge']));
+
+    const values = uniqBy([...cookies, ...this.values], 'key');
+    this.values = uniqWith(values, isEqual);
   }
 
   toJar() {
