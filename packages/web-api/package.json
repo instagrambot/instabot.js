@@ -8,7 +8,7 @@
     "node": "8.9.3"
   },
   "scripts": {
-    "repl": "node bin/repl.js",
+    "repl": "node -r ./repl.js --inspect-brk",
     "test": "jest",
     "lint": "eslint **/*.js",
     "debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
