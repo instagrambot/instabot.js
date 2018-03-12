@@ -8,4 +8,4 @@ module.exports = class Platform {
   async init() {
     await this.settings.sync();
   }
-}
+};

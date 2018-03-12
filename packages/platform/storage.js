@@ -1,9 +1,11 @@
+/* eslint-disable class-methods-use-this */
+
 const { homedir } = require('os');
 const { join } = require('path');
 const fs = require('fs');
 const pify = require('pify');
-const low = require('lowdb')
-const FileSync = require('lowdb/adapters/FileSync')
+const low = require('lowdb');
+const FileSync = require('lowdb/adapters/FileSync');
 
 const mkdir = pify(fs.mkdir);
 const stat = pify(fs.stat);
@@ -20,7 +22,7 @@ class Storage {
     return new Promise((resolve, reject) => {
       stat(HOME_DIR)
         .then(resolve)
-        .catch((err) => {
+        .catch(() => {
           mkdir(HOME_DIR)
             .then(resolve)
             .catch(reject);
