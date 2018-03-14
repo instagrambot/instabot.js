@@ -5,9 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
     "lint": "eslint **/*.js"
   },
   "dependencies": {
+    "define-property": "^2.0.2",
+    "fs-extra": "^5.0.0",
     "lowdb": "^1.0.0",
     "pify": "^3.0.0"
   },
@@ -15,16 +18,36 @@
     "eslint": "^4.18.2",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.9.0",
-    "jest": "^22.4.2"
+    "given2": "^2.1.2",
+    "jest": "^22.4.2",
+    "mock-fs": "^4.4.2"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "given2/setup"
   },
   "eslintConfig": {
     "root": true,
     "extends": "airbnb-base",
+    "rules": {
+      "no-debugger": [
+        0
+      ]
+    },
+    "globals": {
+      "given": true
+    },
     "overrides": [
       {
-        "files": ["**/*.test.js"],
+        "files": [
+          "**/*.test.js"
+        ],
         "env": {
           "jest": true
+        },
+        "rules": {
+          "global-require": [
+            0
+          ]
         }
       }
     ]
