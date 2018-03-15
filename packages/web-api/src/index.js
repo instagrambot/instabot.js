@@ -57,4 +57,9 @@ module.exports = class WebApi {
     const resp = await this.http.post(`/web/friendships/${userId}/unfollow/`);
     return resp.body;
   }
+
+  async me() {
+    const resp = await this.http.get('/accounts/edit/?__a=1');
+    return resp.body;
+  }
 };
