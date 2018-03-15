@@ -1,13 +1,16 @@
 const { homedir } = require('os');
 const { join } = require('path');
-// const fs = require('fs-extra');
-const define = require('define-property');
+const { ensureDirSync } = require('fs-extra');
 
-const DEFAULT_FOLDER = join(homedir(), '.instabot.js');
+const HOME = homedir();
+const ROOT = join(HOME, '.instabot');
 
 module.exports = class Nest {
-  constructor(options = {}) {
-    const path = options.path || DEFAULT_FOLDER;
-    define(this, 'path', path);
+  static get root() {
+    return ROOT;
+  }
+
+  constructor() {
+    ensureDirSync(ROOT);
   }
 };
