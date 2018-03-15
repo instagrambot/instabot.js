@@ -9,7 +9,6 @@
     "lint": "eslint **/*.js"
   },
   "dependencies": {
-    "define-property": "^2.0.2",
     "fs-extra": "^5.0.0",
     "lowdb": "^1.0.0",
     "pify": "^3.0.0"
