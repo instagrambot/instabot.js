@@ -76,4 +76,9 @@ module.exports = class WebApi {
     const resp = await this.http.get(`/p/${shortcode}/?__a=1`);
     return get(resp.body, 'graphql.shortcode_media');
   }
+
+  async like(mediaId) {
+    const resp = await this.http.post(`/web/likes/${mediaId}/like/`);
+    return resp.body;
+  }
 };
