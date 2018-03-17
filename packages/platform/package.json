@@ -9,6 +9,7 @@
     "lint": "eslint **/*.js"
   },
   "dependencies": {
+    "deepmerge": "^2.1.0",
     "fs-extra": "^5.0.0",
     "lowdb": "^1.0.0",
     "pify": "^3.0.0"
