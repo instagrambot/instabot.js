@@ -1,6 +1,6 @@
 const Http = require('./http');
 const get = require('lodash/get');
-const { FOLLOWERS_GRAPH, FOLLOWING_GRAPH } = require('./constants');
+const { FOLLOWERS_GRAPH, FOLLOWING_GRAPH, HASHTAG_GRAPH } = require('./constants');
 
 module.exports = class WebApi {
   constructor() {
@@ -61,5 +61,14 @@ module.exports = class WebApi {
   async me() {
     const resp = await this.http.get('/accounts/edit/?__a=1');
     return resp.body;
+  }
+
+  async hashtag(hashtag, limit = 20) {
+    const resp = await this.graphql(HASHTAG_GRAPH, {
+      tag_name: String(hashtag),
+      first: limit,
+    });
+
+    return get(resp.body, 'data.hashtag.edge_hashtag_to_media');
   }
 };
