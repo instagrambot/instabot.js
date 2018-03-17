@@ -71,4 +71,9 @@ module.exports = class WebApi {
 
     return get(resp.body, 'data.hashtag.edge_hashtag_to_media');
   }
+
+  async shortcodeMedia(shortcode) {
+    const resp = await this.http.get(`/p/${shortcode}/?__a=1`);
+    return get(resp.body, 'graphql.shortcode_media');
+  }
 };
