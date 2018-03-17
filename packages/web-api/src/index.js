@@ -97,4 +97,14 @@ module.exports = class WebApi {
 
     return get(resp.body, 'data.user.edge_owner_to_timeline_media');
   }
+
+  async searchUsers(username) {
+    const resp = await this.http.get(`/web/search/topsearch/?context=user&query=${username}`);
+    return resp.body;
+  }
+
+  async searchHashtags(hashtag) {
+    const resp = await this.http.get(`/web/search/topsearch/?context=hashtag&query=${hashtag}`);
+    return resp.body;
+  }
 };
