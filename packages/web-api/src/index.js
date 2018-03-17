@@ -107,4 +107,11 @@ module.exports = class WebApi {
     const resp = await this.http.get(`/web/search/topsearch/?context=hashtag&query=${hashtag}`);
     return resp.body;
   }
+
+  async addComment(mediaId, text) {
+    const resp = await this.http.post(`/web/comments/${mediaId}/add/`, {
+      form: { comment_text: String(text) },
+    });
+    return resp.body;
+  }
 };
