@@ -13,10 +13,10 @@
     "fs-extra": "^5.0.0"
   },
   "devDependencies": {
-    "eslint": "^4.18.2",
+    "eslint": "^4.19.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.9.0",
-    "given2": "^2.1.2",
+    "given2": "^2.1.5",
     "jest": "^22.4.2",
     "mock-fs": "^4.4.2"
   },
