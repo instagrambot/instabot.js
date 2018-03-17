@@ -114,4 +114,9 @@ module.exports = class WebApi {
     });
     return resp.body;
   }
+
+  async deleteComment(mediaId, commentId) {
+    const resp = await this.http.post(`/web/comments/${mediaId}/delete/${commentId}/`);
+    return resp.body;
+  }
 };
