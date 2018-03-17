@@ -1,6 +1,8 @@
 const Http = require('./http');
 const get = require('lodash/get');
-const { FOLLOWERS_GRAPH, FOLLOWING_GRAPH, HASHTAG_GRAPH } = require('./constants');
+const {
+  FOLLOWERS_GRAPH, FOLLOWING_GRAPH, HASHTAG_GRAPH, USER_MEDIA_GRAPH,
+} = require('./constants');
 
 module.exports = class WebApi {
   constructor() {
@@ -85,5 +87,14 @@ module.exports = class WebApi {
   async unlike(mediaId) {
     const resp = await this.http.post(`/web/likes/${mediaId}/unlike/`);
     return resp.body;
+  }
+
+  async userMedias(userId, limit = 20) {
+    const resp = await this.graphql(USER_MEDIA_GRAPH, {
+      id: String(userId),
+      first: limit,
+    });
+
+    return get(resp.body, 'data.user.edge_owner_to_timeline_media');
   }
 };
