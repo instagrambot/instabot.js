@@ -13,7 +13,7 @@ describe('Homie', () => {
   given('subject', () => {
     mockFs({
       [Homie.root]: {
-        'example.json': given.content || '',
+        [given.file]: given.content || '',
       },
     });
 
