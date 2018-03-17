@@ -81,4 +81,9 @@ module.exports = class WebApi {
     const resp = await this.http.post(`/web/likes/${mediaId}/like/`);
     return resp.body;
   }
+
+  async unlike(mediaId) {
+    const resp = await this.http.post(`/web/likes/${mediaId}/unlike/`);
+    return resp.body;
+  }
 };
