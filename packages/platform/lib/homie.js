@@ -12,7 +12,8 @@ const {
 const {
   decorate,
   observable,
-  autorun,
+  toJS,
+  reaction,
 } = require('mobx');
 
 const HOME = homedir();
@@ -34,19 +35,18 @@ class Homie {
 
     ensureFileSync(path);
 
-    const json = readJsonSync(path, { throws: false });
-    const state = merge(json, defaults);
+    const json = readJsonSync(path, { throws: false }) || {};
+    const state = merge(defaults, json);
 
     this.path = path;
     this.state = state;
-    this.save = this.save.bind(this);
-    this.save = debounce(this.save, DEBOUNCE);
+    this.save = debounce(this.save.bind(this), DEBOUNCE);
 
-    autorun(this.save);
+    reaction(() => toJS(this.state), this.save);
   }
 
-  save() {
-    writeJsonSync(this.path, this.state);
+  save(state) {
+    writeJsonSync(this.path, state || toJS(this.state));
   }
 }
 
