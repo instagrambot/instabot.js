@@ -2,9 +2,11 @@ const os = require('os');
 
 os.homedir = () => '/home/user/';
 
+jest.mock('lodash/debounce', () => x => x);
+
 const mockFs = require('mock-fs');
 const Homie = require('./homie');
-const { pathExistsSync } = require('fs-extra');
+const { pathExistsSync, readJsonSync } = require('fs-extra');
 
 describe('Homie', () => {
   given('file', () => 'example.json');
@@ -48,6 +50,21 @@ describe('Homie', () => {
       given('options', () => ({ defaults: { two: 2 } }));
 
       expect(given.subject.state).toEqual({ one: 1, two: 2 });
+    });
+  });
+
+  describe('.save', () => {
+    it('should call when state changed', (done) => {
+      given('content', () => '{ "one": 1 }');
+
+      const path = `${Homie.root}/${given.file}`;
+
+      given.subject.state.one = 2;
+
+      setTimeout(() => {
+        expect(readJsonSync(path)).toEqual({ one: 2 });
+        done();
+      });
     });
   });
 });
