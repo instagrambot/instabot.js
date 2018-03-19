@@ -23,7 +23,7 @@
     "mock-fs": "^4.4.2"
   },
   "jest": {
-    "setupTestFrameworkScriptFile": "given2/setup"
+    "setupTestFrameworkScriptFile": "./support/jest"
   },
   "eslintConfig": {
     "root": true,
@@ -34,7 +34,8 @@
       ]
     },
     "globals": {
-      "given": true
+      "given": true,
+      "moment": true
     },
     "overrides": [
       {

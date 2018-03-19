@@ -54,17 +54,16 @@ describe('Homie', () => {
   });
 
   describe('.save', () => {
-    it('should call when state changed', (done) => {
+    it('should call when state changed', async () => {
       given('content', () => '{ "one": 1 }');
 
       const path = `${Homie.root}/${given.file}`;
 
       given.subject.state.one = 2;
 
-      setTimeout(() => {
-        expect(readJsonSync(path)).toEqual({ one: 2 });
-        done();
-      });
+      await moment();
+
+      expect(readJsonSync(path)).toEqual({ one: 2 });
     });
   });
 });
