@@ -6,7 +6,7 @@ const debounce = require('lodash/debounce');
 const {
   ensureFileSync,
   readJsonSync,
-  writeJsonSync,
+  writeJson,
 } = require('fs-extra');
 
 const {
@@ -29,8 +29,7 @@ class Homie {
     return ROOT;
   }
 
-  constructor(file, options = {}) {
-    const defaults = options.defaults || {};
+  constructor(file, defaults = {}) {
     const path = join(ROOT, file);
 
     ensureFileSync(path);
@@ -38,6 +37,7 @@ class Homie {
     const json = readJsonSync(path, { throws: false }) || {};
     const state = merge(defaults, json);
 
+    this.saving = false;
     this.path = path;
     this.state = state;
     this.save = debounce(this.save.bind(this), DEBOUNCE);
@@ -45,8 +45,23 @@ class Homie {
     reaction(() => toJS(this.state), this.save);
   }
 
+  toJs() {
+    return toJS(this.state);
+  }
+
   save(state) {
-    writeJsonSync(this.path, state || toJS(this.state));
+    if (this.saving) return Promise.reject();
+
+    this.saving = true;
+
+    try {
+      const output = state || toJS(this.state);
+      return writeJson(this.path, output);
+    } catch (err) {
+      return Promise.reject(err);
+    } finally {
+      this.saving = false;
+    }
   }
 }
 

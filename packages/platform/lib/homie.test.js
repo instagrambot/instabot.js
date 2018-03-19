@@ -10,7 +10,7 @@ const { pathExistsSync, readJsonSync } = require('fs-extra');
 
 describe('Homie', () => {
   given('file', () => 'example.json');
-  given('options', () => {});
+  given('defaults', () => {});
 
   given('subject', () => {
     mockFs({
@@ -19,7 +19,7 @@ describe('Homie', () => {
       },
     });
 
-    return new Homie(given.file, given.options);
+    return new Homie(given.file, given.defaults);
   });
 
   afterEach(() => mockFs.restore());
@@ -41,13 +41,13 @@ describe('Homie', () => {
     });
 
     it('should use defaults when file empty', () => {
-      given('options', () => ({ defaults: { two: 2 } }));
+      given('defaults', () => ({ two: 2 }));
       expect(given.subject.state).toEqual({ two: 2 });
     });
 
     it('should merge width defaults', () => {
       given('content', () => '{ "one": 1 }');
-      given('options', () => ({ defaults: { two: 2 } }));
+      given('defaults', () => ({ two: 2 }));
 
       expect(given.subject.state).toEqual({ one: 1, two: 2 });
     });
