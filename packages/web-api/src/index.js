@@ -1,7 +1,8 @@
 const Http = require('./http');
 const get = require('lodash/get');
 const {
-  DISCOVER_MEDIAS_GRAPH, FOLLOWERS_GRAPH, FOLLOWING_GRAPH, HASHTAG_GRAPH, USER_MEDIA_GRAPH,
+  DISCOVER_MEDIAS_GRAPH, FOLLOWERS_GRAPH, FOLLOWING_GRAPH, HASHTAG_GRAPH, LIKERS_SHORTCODE_GRAPH,
+  USER_MEDIA_GRAPH,
 } = require('./constants');
 
 module.exports = class WebApi {
@@ -142,5 +143,14 @@ module.exports = class WebApi {
     });
 
     return get(resp.body, 'data.user.edge_web_discover_media');
+  }
+
+  async shortcodeLikers(shortcode, limit = 20) {
+    const resp = await this.graphql(LIKERS_SHORTCODE_GRAPH, {
+      shortcode,
+      first: limit,
+    });
+
+    return get(resp.body, 'data.shortcode_media');
   }
 };
