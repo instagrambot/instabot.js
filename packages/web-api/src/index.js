@@ -60,6 +60,16 @@ module.exports = class WebApi {
     return resp.body;
   }
 
+  async block(userId) {
+    const resp = await this.http.post(`/web/friendships/${userId}/block/`);
+    return resp.body;
+  }
+
+  async unblock(userId) {
+    const resp = await this.http.post(`/web/friendships/${userId}/unblock/`);
+    return resp.body;
+  }
+
   async me() {
     const resp = await this.http.get('/accounts/edit/?__a=1');
     return resp.body;
