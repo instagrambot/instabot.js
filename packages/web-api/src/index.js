@@ -129,4 +129,9 @@ module.exports = class WebApi {
     const resp = await this.http.post(`/web/comments/${mediaId}/delete/${commentId}/`);
     return resp.body;
   }
+
+  async activity() {
+    const resp = await this.http.get('/accounts/activity/?__a=1');
+    return get(resp.body, 'graphql.user');
+  }
 };
