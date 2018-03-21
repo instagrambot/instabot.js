@@ -1,7 +1,8 @@
 const Http = require('./http');
 const get = require('lodash/get');
 const {
-  FOLLOWERS_GRAPH, FOLLOWING_GRAPH, HASHTAG_GRAPH, USER_MEDIA_GRAPH,
+  DISCOVER_MEDIAS_GRAPH, FOLLOWERS_GRAPH, FOLLOWING_GRAPH, HASHTAG_GRAPH, LIKERS_SHORTCODE_GRAPH,
+  USER_MEDIA_GRAPH,
 } = require('./constants');
 
 module.exports = class WebApi {
@@ -57,6 +58,16 @@ module.exports = class WebApi {
 
   async unfollow(userId) {
     const resp = await this.http.post(`/web/friendships/${userId}/unfollow/`);
+    return resp.body;
+  }
+
+  async block(userId) {
+    const resp = await this.http.post(`/web/friendships/${userId}/block/`);
+    return resp.body;
+  }
+
+  async unblock(userId) {
+    const resp = await this.http.post(`/web/friendships/${userId}/unblock/`);
     return resp.body;
   }
 
@@ -118,5 +129,28 @@ module.exports = class WebApi {
   async deleteComment(mediaId, commentId) {
     const resp = await this.http.post(`/web/comments/${mediaId}/delete/${commentId}/`);
     return resp.body;
+  }
+
+  async activity() {
+    const resp = await this.http.get('/accounts/activity/?__a=1');
+    return get(resp.body, 'graphql.user');
+  }
+
+  async discoverMedias(limit = 20, page = 1) {
+    const resp = await this.graphql(DISCOVER_MEDIAS_GRAPH, {
+      first: limit,
+      after: page,
+    });
+
+    return get(resp.body, 'data.user.edge_web_discover_media');
+  }
+
+  async shortcodeLikers(shortcode, limit = 20) {
+    const resp = await this.graphql(LIKERS_SHORTCODE_GRAPH, {
+      shortcode,
+      first: limit,
+    });
+
+    return get(resp.body, 'data.shortcode_media');
   }
 };
