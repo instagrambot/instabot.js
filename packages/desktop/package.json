@@ -15,6 +15,7 @@
     "poi": "^9.6.13"
   },
   "dependencies": {
+    "normalize.css": "^8.0.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   },
@@ -26,7 +27,9 @@
       "node": true
     },
     "rules": {
-      "react/jsx-filename-extension": [0]
+      "react/jsx-filename-extension": [
+        0
+      ]
     }
   }
 }

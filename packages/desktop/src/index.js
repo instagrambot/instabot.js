@@ -1,6 +1,6 @@
+import 'normalize.css';
 import React from 'react';
 import { render } from 'react-dom';
+import Application from './components/Application';
 
-const App = () => <h1>Hello Instabot.</h1>;
-
-render(<App />, document.getElementById('app'));
+render(<Application />, document.getElementById('app'));
