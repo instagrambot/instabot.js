@@ -1,6 +1,12 @@
 {
   "name": "@instabot.js/desktop",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "main": "index.js",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "scripts": {
+    "start": "poi"
+  },
+  "devDependencies": {
+    "poi": "^9.6.13"
+  }
 }
