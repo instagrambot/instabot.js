@@ -11,6 +11,7 @@
     "node": "8.9.3"
   },
   "devDependencies": {
+    "babel-plugin-emotion": "^9.0.1",
     "lerna": "^2.9.0"
   }
 }

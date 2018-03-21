@@ -4,9 +4,11 @@
   "main": "index.js",
   "license": "Apache-2.0",
   "scripts": {
-    "start": "poi"
+    "start": "poi",
+    "build": "poi build"
   },
   "devDependencies": {
+    "babel-plugin-emotion": "^9.0.1",
     "eslint": "^4.19.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.9.0",
@@ -15,6 +17,7 @@
     "poi": "^9.6.13"
   },
   "dependencies": {
+    "emotion": "^9.0.2",
     "normalize.css": "^8.0.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
@@ -27,9 +30,51 @@
       "node": true
     },
     "rules": {
+      "react/prop-types": [
+        2,
+        {
+          "ignore": [
+            "children"
+          ]
+        }
+      ],
       "react/jsx-filename-extension": [
         0
       ]
+    }
+  },
+  "babel": {
+    "presets": [
+      [
+        "poi",
+        {
+          "jsx": "react"
+        }
+      ]
+    ],
+    "env": {
+      "production": {
+        "plugins": [
+          [
+            "emotion",
+            {
+              "hoist": true,
+              "extractStatic": true
+            }
+          ]
+        ]
+      },
+      "development": {
+        "plugins": [
+          [
+            "emotion",
+            {
+              "sourceMap": true,
+              "autoLabel": true
+            }
+          ]
+        ]
+      }
     }
   }
 }

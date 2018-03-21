@@ -1,6 +1,8 @@
 import 'normalize.css';
 import React from 'react';
 import { render } from 'react-dom';
-import Application from './components/Application';
+import Instabot from './components/Instabot';
 
-render(<Application />, document.getElementById('app'));
+import './index.css';
+
+render(<Instabot />, document.getElementById('app'));
