@@ -19,6 +19,7 @@
     "react-dom": "^16.2.0"
   },
   "eslintConfig": {
+    "root": true,
     "extends": "airbnb",
     "env": {
       "browser": true,
