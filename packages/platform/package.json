@@ -29,31 +29,9 @@
     "setupTestFrameworkScriptFile": "./support/jest"
   },
   "eslintConfig": {
-    "root": true,
-    "extends": "airbnb-base",
-    "rules": {
-      "no-debugger": [
-        0
-      ]
-    },
     "globals": {
       "given": true,
       "moment": true
-    },
-    "overrides": [
-      {
-        "files": [
-          "**/*.test.js"
-        ],
-        "env": {
-          "jest": true
-        },
-        "rules": {
-          "global-require": [
-            0
-          ]
-        }
-      }
-    ]
+    }
   }
 }
