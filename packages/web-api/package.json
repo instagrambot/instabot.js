@@ -1,15 +1,14 @@
 {
   "name": "@instabot.js/web-api",
-  "description": "Instagram related apis",
   "version": "0.0.0",
-  "main": "index.js",
+  "main": "./src/index.js",
   "license": "Apache-2.0",
   "engines": {
     "node": "8.9.3"
   },
   "scripts": {
     "repl": "node -r ./repl.js --inspect-brk",
-    "test": "jest",
+    "test": "jest --colors",
     "lint": "eslint **/*.js",
     "debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
   },
