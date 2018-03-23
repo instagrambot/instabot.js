@@ -9,7 +9,8 @@
   "scripts": {
     "start": "electron electron.js",
     "build": "poi build",
-    "test": "jest --colors"
+    "test": "jest --colors",
+    "lint": "eslint **/*.js"
   },
   "devDependencies": {
     "babel-plugin-emotion": "^9.0.1",
