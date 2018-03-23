@@ -1,7 +1,11 @@
 const Http = require('./http');
 const get = require('lodash/get');
 const {
-  DISCOVER_MEDIAS_GRAPH, FOLLOWERS_GRAPH, FOLLOWING_GRAPH, HASHTAG_GRAPH, LIKERS_SHORTCODE_GRAPH,
+  DISCOVER_MEDIAS_GRAPH,
+  FOLLOWERS_GRAPH,
+  FOLLOWING_GRAPH,
+  HASHTAG_GRAPH,
+  LIKERS_SHORTCODE_GRAPH,
   USER_MEDIA_GRAPH,
 } = require('./constants');
 
