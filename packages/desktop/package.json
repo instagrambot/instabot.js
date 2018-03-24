@@ -24,6 +24,7 @@
     "poi": "^9.6.13"
   },
   "dependencies": {
+    "@instabot.js/web-api": "0.0.0",
     "emotion": "^9.0.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
