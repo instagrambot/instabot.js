@@ -29,14 +29,26 @@
     "react-dom": "^16.2.0"
   },
   "eslintConfig": {
+    "root": true,
     "extends": "airbnb",
     "env": {
+      "node": true,
       "browser": true
     },
     "rules": {
+      "no-debugger": [0],
+      "global-require": [0],
       "react/prop-types": [2, { "ignore": ["children"] }],
       "react/jsx-filename-extension": [0]
-    }
+    },
+    "overrides": [
+      {
+        "files": ["**/*.test.js"],
+        "env": {
+          "jest": true
+        }
+      }
+    ]
   },
   "babel": {
     "presets": [["poi", { "jsx": "react" }]],
