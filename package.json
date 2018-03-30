@@ -16,11 +16,14 @@
     "eslint-plugin-import": "^2.10.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
+    "mock-fs": "^4.4.2",
     "poi": "^9.6.13"
   },
   "dependencies": {
     "deepmerge": "^2.1.0",
+    "fs-extra": "^5.0.0",
     "lodash": "^4.17.5",
+    "mobx": "^4.1.1",
     "request-promise-native": "^1.0.5",
     "tough-cookie": "^2.3.4"
   },
