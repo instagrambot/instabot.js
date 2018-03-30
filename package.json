@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron src/main/index.js",
     "start:prod": "NODE_ENV=production electron src/main/index.js",
-    "build": "NODE_ENV=production poi build",
+    "build": "NODE_ENV=production poi build --generate-stats dist/stats.json",
     "test": "jest --colors",
     "lint": "eslint src/**/*.js"
   },
@@ -40,6 +40,13 @@
     "request-promise-native": "^1.0.5",
     "tough-cookie": "^2.3.4"
   },
+  "externals": [
+    "lodash",
+    "electron-is-dev",
+    "fs-extra",
+    "request-promise-native",
+    "tough-cookie"
+  ],
   "eslintConfig": {
     "root": true,
     "extends": "airbnb",
