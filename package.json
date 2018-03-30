@@ -3,11 +3,37 @@
   "description": "An attempt to create instabot as gui app",
   "version": "0.0.0",
   "license": "Apache-2.0",
-  "scripts": {
-  },
+  "scripts": {},
   "engines": {
     "node": "8.9.3"
   },
   "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.10.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": "airbnb",
+    "env": {
+      "node": true,
+      "browser": true
+    },
+    "rules": {
+      "no-debugger": [0],
+      "global-require": [0],
+      "react/prop-types": [2, { "ignore": ["children"] }],
+      "react/jsx-filename-extension": [0]
+    },
+    "overrides": [
+      {
+        "files": ["**/*.spec.js"],
+        "env": {
+          "jest": true
+        }
+      }
+    ]
   }
 }
