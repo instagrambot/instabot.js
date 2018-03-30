@@ -3,16 +3,20 @@
   "description": "An attempt to create instabot as gui app",
   "version": "0.0.0",
   "license": "Apache-2.0",
-  "scripts": {},
+  "scripts": {
+    "start": "electron src/main/index.js"
+  },
   "engines": {
     "node": "8.9.3"
   },
   "devDependencies": {
+    "electron": "^1.8.4",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.10.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.7.0"
+    "eslint-plugin-react": "^7.7.0",
+    "poi": "^9.6.13"
   },
   "eslintConfig": {
     "root": true,
@@ -22,14 +26,29 @@
       "browser": true
     },
     "rules": {
-      "no-debugger": [0],
-      "global-require": [0],
-      "react/prop-types": [2, { "ignore": ["children"] }],
-      "react/jsx-filename-extension": [0]
+      "no-debugger": [
+        0
+      ],
+      "global-require": [
+        0
+      ],
+      "react/prop-types": [
+        2,
+        {
+          "ignore": [
+            "children"
+          ]
+        }
+      ],
+      "react/jsx-filename-extension": [
+        0
+      ]
     },
     "overrides": [
       {
-        "files": ["**/*.spec.js"],
+        "files": [
+          "**/*.spec.js"
+        ],
         "env": {
           "jest": true
         }
