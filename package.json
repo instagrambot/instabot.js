@@ -5,7 +5,8 @@
   "license": "Apache-2.0",
   "scripts": {
     "start": "electron src/main/index.js",
-    "test": "jest --colors"
+    "test": "jest --colors",
+    "lint": "eslint src/**/*.js"
   },
   "engines": {
     "node": "8.9.3"
