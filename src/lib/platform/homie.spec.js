@@ -1,12 +1,13 @@
-const os = require('os');
-
-os.homedir = () => '/home/user/';
+/* eslint-disable import/first */
 
 jest.mock('lodash/debounce', () => x => x);
 
-const mockFs = require('mock-fs');
-const Homie = require('./homie');
-const { pathExistsSync, readJsonSync } = require('fs-extra');
+import os from 'os';
+import mockFs from 'mock-fs';
+import { pathExistsSync, readJsonSync } from 'fs-extra';
+import Homie from './homie';
+
+os.homedir = () => '/home/user/';
 
 describe('Homie', () => {
   given('file', () => 'example.json');

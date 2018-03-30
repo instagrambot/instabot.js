@@ -1,13 +1,12 @@
-const request = require('request-promise-native');
-const deepmerge = require('deepmerge');
-const pick = require('lodash/pick');
-const Cookies = require('./cookies');
-
-const { BASE_URL, USER_AGENT } = require('./constants');
+import request from 'request-promise-native';
+import deepmerge from 'deepmerge';
+import { pick } from 'lodash/pick';
+import Cookies from './cookies';
+import { BASE_URL, USER_AGENT } from './constants';
 
 const reduceResp = resp => pick(resp, ['body', 'headers', 'statusCode']);
 
-module.exports = class Http {
+export default class Http {
   constructor() {
     this.cookies = new Cookies();
 
@@ -66,4 +65,4 @@ module.exports = class Http {
   post(uri, options) {
     return this.request({ method: 'POST', uri, ...options });
   }
-};
+}

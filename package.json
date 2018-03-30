@@ -44,7 +44,8 @@
       "browser": true
     },
     "globals": {
-      "given": true
+      "given": true,
+      "moment": true
     },
     "rules": {
       "no-debugger": [
@@ -85,9 +86,8 @@
         "env",
         {
           "useBuiltIns": true,
-          "modules": false,
           "targets": {
-            "node": "current"
+            "node": "8.9.3"
           }
         }
       ]

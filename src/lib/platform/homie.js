@@ -1,20 +1,9 @@
-const { homedir } = require('os');
-const { join } = require('path');
-const merge = require('deepmerge');
-const debounce = require('lodash/debounce');
-
-const {
-  ensureFileSync,
-  readJsonSync,
-  writeJson,
-} = require('fs-extra');
-
-const {
-  decorate,
-  observable,
-  toJS,
-  reaction,
-} = require('mobx');
+import { homedir } from 'os';
+import { join } from 'path';
+import merge from 'deepmerge';
+import debounce from 'lodash/debounce';
+import { ensureFileSync, readJsonSync, writeJson } from 'fs-extra';
+import { decorate, observable, toJS, reaction } from 'mobx';
 
 const HOME = homedir();
 const ROOT = join(HOME, '.instabot');
@@ -67,4 +56,4 @@ class Homie {
 
 decorate(Homie, { state: observable });
 
-module.exports = Homie;
+export default Homie;

@@ -1,4 +1,4 @@
-const WebApi = require('./index');
+import WebApi from './index';
 
 describe('WebApi', () => {
   it('should be defined', () => {

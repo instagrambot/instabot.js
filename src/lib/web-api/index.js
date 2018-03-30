@@ -1,15 +1,16 @@
-const Http = require('./http');
-const get = require('lodash/get');
-const {
+import { get } from 'lodash';
+import Http from './http';
+
+import {
   DISCOVER_MEDIAS_GRAPH,
   FOLLOWERS_GRAPH,
   FOLLOWING_GRAPH,
   HASHTAG_GRAPH,
   LIKERS_SHORTCODE_GRAPH,
   USER_MEDIA_GRAPH,
-} = require('./constants');
+} from './constants';
 
-module.exports = class WebApi {
+export default class WebApi {
   constructor() {
     this.http = new Http();
   }
@@ -157,4 +158,4 @@ module.exports = class WebApi {
 
     return get(resp.body, 'data.shortcode_media');
   }
-};
+}
