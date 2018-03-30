@@ -1,6 +1,6 @@
 import request from 'request-promise-native';
 import deepmerge from 'deepmerge';
-import { pick } from 'lodash/pick';
+import { pick } from 'lodash';
 import Cookies from './cookies';
 import { BASE_URL, USER_AGENT } from './constants';
 

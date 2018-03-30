@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 
-import { uniqWith, uniqBy, isEqual, omit } from 'lodash/uniqWith';
+import { uniqWith, uniqBy, isEqual, omit } from 'lodash';
 import request from 'request-promise-native';
 import { Cookie } from 'tough-cookie';
 import { BASE_URL } from './constants';
