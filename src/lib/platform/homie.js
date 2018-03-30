@@ -67,4 +67,4 @@ class Homie {
 
 decorate(Homie, { state: observable });
 
-export default Homie;
+module.exports = Homie;

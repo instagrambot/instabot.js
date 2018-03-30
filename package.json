@@ -4,18 +4,22 @@
   "version": "0.0.0",
   "license": "Apache-2.0",
   "scripts": {
-    "start": "electron src/main/index.js"
+    "start": "electron src/main/index.js",
+    "test": "jest --colors"
   },
   "engines": {
     "node": "8.9.3"
   },
   "devDependencies": {
+    "babel-jest": "^22.4.3",
     "electron": "^1.8.4",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.10.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
+    "given2": "^2.1.5",
+    "jest": "^22.4.3",
     "mock-fs": "^4.4.2",
     "poi": "^9.6.13"
   },
@@ -36,6 +40,9 @@
     "env": {
       "node": true,
       "browser": true
+    },
+    "globals": {
+      "given": true
     },
     "rules": {
       "no-debugger": [
@@ -65,6 +72,24 @@
           "jest": true
         }
       }
+    ]
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "./support/jest"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env", {
+          "useBuiltIns": true,
+          "modules": false,
+          "targets": { "node": "current" }
+        }
+      ]
+    ],
+    "plugins": [
+      "transform-react-jsx",
+      ["transform-object-rest-spread", { "useBuiltIns": true }]
     ]
   }
 }
