@@ -21,9 +21,12 @@
   },
   "dependencies": {
     "deepmerge": "^2.1.0",
+    "emotion": "^9.1.0",
     "fs-extra": "^5.0.0",
     "lodash": "^4.17.5",
     "mobx": "^4.1.1",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
     "request-promise-native": "^1.0.5",
     "tough-cookie": "^2.3.4"
   },
