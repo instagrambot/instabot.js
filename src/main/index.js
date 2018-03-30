@@ -2,15 +2,28 @@
 
 const { app, BrowserWindow } = require('electron');
 const poi = require('poi/bin/run');
+const { join } = require('path');
+const { format } = require('url');
 
 const devServer = poi({ mode: 'development' });
+const isProd = process.env.NODE_ENV === 'production';
 
-let main;
+let window;
 
 function createWindow() {
-  main = new BrowserWindow();
-  main.loadURL('http://localhost:4000/');
-  main.on('closed', () => { main = null; });
+  window = new BrowserWindow();
+
+  if (isProd) {
+    window.loadURL(format({
+      pathname: join(__dirname, '../../dist/index.html'),
+      protocol: 'file',
+      slashes: true,
+    }));
+  } else {
+    window.loadURL('http://localhost:4000/');
+  }
+
+  window.on('closed', () => { window = null; });
 }
 
 app.on('ready', () => {
@@ -18,7 +31,7 @@ app.on('ready', () => {
 });
 
 app.on('activate', () => {
-  if (main === null) createWindow();
+  if (window === null) createWindow();
 });
 
 app.on('window-all-closed', () => {

@@ -5,6 +5,8 @@
   "license": "Apache-2.0",
   "scripts": {
     "start": "electron src/main/index.js",
+    "start:prod": "NODE_ENV=production electron src/main/index.js",
+    "build": "NODE_ENV=production poi build",
     "test": "jest --colors",
     "lint": "eslint src/**/*.js"
   },
@@ -23,10 +25,12 @@
     "given2": "^2.1.5",
     "jest": "^22.4.3",
     "mock-fs": "^4.4.2",
-    "poi": "^9.6.13"
+    "poi": "^9.6.13",
+    "poi-preset-babel-minify": "^1.0.3"
   },
   "dependencies": {
     "deepmerge": "^2.1.0",
+    "electron-is-dev": "^0.3.0",
     "emotion": "^9.1.0",
     "fs-extra": "^5.0.0",
     "lodash": "^4.17.5",
@@ -103,13 +107,25 @@
     ],
     "env": {
       "production": {
+        "comments": false,
         "plugins": [
-          ["emotion", { "hoist": true }]
+          [
+            "emotion",
+            {
+              "hoist": true
+            }
+          ]
         ]
       },
       "development": {
         "plugins": [
-          ["emotion", { "sourceMap": true, "autoLabel": true }]
+          [
+            "emotion",
+            {
+              "sourceMap": true,
+              "autoLabel": true
+            }
+          ]
         ]
       }
     }
