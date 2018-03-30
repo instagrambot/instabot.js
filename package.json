@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "babel-jest": "^22.4.3",
+    "babel-plugin-emotion": "^9.1.0",
     "electron": "^1.8.4",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
@@ -81,16 +82,36 @@
   "babel": {
     "presets": [
       [
-        "env", {
+        "env",
+        {
           "useBuiltIns": true,
           "modules": false,
-          "targets": { "node": "current" }
+          "targets": {
+            "node": "current"
+          }
         }
       ]
     ],
     "plugins": [
       "transform-react-jsx",
-      ["transform-object-rest-spread", { "useBuiltIns": true }]
-    ]
+      [
+        "transform-object-rest-spread",
+        {
+          "useBuiltIns": true
+        }
+      ]
+    ],
+    "env": {
+      "production": {
+        "plugins": [
+          ["emotion", { "hoist": true }]
+        ]
+      },
+      "development": {
+        "plugins": [
+          ["emotion", { "sourceMap": true, "autoLabel": true }]
+        ]
+      }
+    }
   }
 }
