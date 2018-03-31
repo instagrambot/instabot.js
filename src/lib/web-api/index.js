@@ -124,6 +124,11 @@ export default class WebApi {
     return resp.body;
   }
 
+  async searchPlaces(place) {
+    const resp = await this.http.get(`/web/search/topsearch/?context=place&query=${place}`);
+    return resp.body;
+  }
+
   async addComment(mediaId, text) {
     const resp = await this.http.post(`/web/comments/${mediaId}/add/`, {
       form: { comment_text: String(text) },
