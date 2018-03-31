@@ -7,6 +7,7 @@ import {
   FOLLOWING_GRAPH,
   HASHTAG_GRAPH,
   LIKERS_SHORTCODE_GRAPH,
+  PLACE_MEDIA_GRAPH,
   USER_MEDIA_GRAPH,
 } from './constants';
 
@@ -112,6 +113,15 @@ export default class WebApi {
     });
 
     return get(resp.body, 'data.user.edge_owner_to_timeline_media');
+  }
+
+  async placeMedias(placeId, limit = 20) {
+    const resp = await this.graphql(PLACE_MEDIA_GRAPH, {
+      id: String(placeId),
+      first: limit,
+    });
+
+    return get(resp.body, 'data.location.edge_location_to_media');
   }
 
   async searchAny(query) {
