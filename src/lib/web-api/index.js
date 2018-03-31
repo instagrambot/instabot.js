@@ -2,6 +2,7 @@ import { get } from 'lodash';
 import Http from './http';
 
 import {
+  COMMENTS_GRAPH,
   DISCOVER_MEDIAS_GRAPH,
   FOLLOWERS_GRAPH,
   FOLLOWING_GRAPH,
@@ -177,5 +178,15 @@ export default class WebApi {
     });
 
     return get(resp.body, 'data.shortcode_media');
+  }
+
+  async shortcodeComments(shortcode, limit = 20) {
+    const resp = await this.graphql(COMMENTS_GRAPH, {
+      shortcode,
+      first: limit,
+    });
+
+    console.log(get(resp.body, 'data.shortcode_media.edge_media_to_comment'));
+    return get(resp.body, 'data.shortcode_media.edge_media_to_comment');
   }
 }
