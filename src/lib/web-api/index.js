@@ -114,6 +114,11 @@ export default class WebApi {
     return get(resp.body, 'data.user.edge_owner_to_timeline_media');
   }
 
+  async searchAny(query) {
+    const resp = await this.http.get(`/web/search/topsearch/?context=blended&query=${query}`);
+    return resp.body;
+  }
+
   async searchUsers(username) {
     const resp = await this.http.get(`/web/search/topsearch/?context=user&query=${username}`);
     return resp.body;
