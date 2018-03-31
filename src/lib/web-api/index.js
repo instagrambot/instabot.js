@@ -186,7 +186,6 @@ export default class WebApi {
       first: limit,
     });
 
-    console.log(get(resp.body, 'data.shortcode_media.edge_media_to_comment'));
     return get(resp.body, 'data.shortcode_media.edge_media_to_comment');
   }
 }
