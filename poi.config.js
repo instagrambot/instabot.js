@@ -25,11 +25,6 @@ module.exports = () => ({
       .delete('split-vendor-code')
       .delete('split-manifest');
 
-    config.node.merge({
-      __dirname: false,
-      __filename: false,
-    });
-
     config.module
       .rule('js')
       .exclude.add(/node_modules/);
