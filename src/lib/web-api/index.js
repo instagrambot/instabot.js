@@ -10,6 +10,7 @@ import {
   LIKERS_SHORTCODE_GRAPH,
   PLACE_MEDIA_GRAPH,
   USER_MEDIA_GRAPH,
+  USER_STORIES_GRAPH,
 } from './constants';
 
 export default class WebApi {
@@ -114,6 +115,18 @@ export default class WebApi {
     });
 
     return get(resp.body, 'data.user.edge_owner_to_timeline_media');
+  }
+
+  async userStories(userId) {
+    const resp = await this.graphql(USER_STORIES_GRAPH, {
+      id: String(userId),
+      include_chaining: true,
+      include_reel: true,
+      include_suggested_users: false,
+      include_logged_out_extras: false,
+    });
+
+    return get(resp.body, 'data.user');
   }
 
   async placeMedias(placeId, limit = 20) {
