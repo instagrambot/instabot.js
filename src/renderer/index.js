@@ -2,9 +2,7 @@ import { injectGlobal } from 'emotion';
 import React from 'react';
 import { render } from 'react-dom';
 import Instabot from './components/Instabot';
-import WebApi from '../lib/web-api';
-
-global.api = new WebApi();
+import '../../support/repl';
 
 injectGlobal(`
   *, *::after, *::before {
