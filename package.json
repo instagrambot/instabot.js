@@ -31,7 +31,6 @@
   },
   "dependencies": {
     "deepmerge": "^2.1.0",
-    "electron-is-dev": "^0.3.0",
     "emotion": "^9.1.0",
     "fs-extra": "^5.0.0",
     "lodash": "^4.17.5",
@@ -43,7 +42,6 @@
   },
   "externals": [
     "lodash",
-    "electron-is-dev",
     "fs-extra",
     "request-promise-native",
     "tough-cookie"
