@@ -2,6 +2,7 @@ import { get } from 'lodash';
 import Http from './http';
 
 import {
+  COMMENTS_GRAPH,
   DISCOVER_MEDIAS_GRAPH,
   FOLLOWERS_GRAPH,
   FOLLOWING_GRAPH,
@@ -9,6 +10,7 @@ import {
   LIKERS_SHORTCODE_GRAPH,
   PLACE_MEDIA_GRAPH,
   USER_MEDIA_GRAPH,
+  USER_STORIES_GRAPH,
 } from './constants';
 
 export default class WebApi {
@@ -115,6 +117,18 @@ export default class WebApi {
     return get(resp.body, 'data.user.edge_owner_to_timeline_media');
   }
 
+  async userStories(userId) {
+    const resp = await this.graphql(USER_STORIES_GRAPH, {
+      id: String(userId),
+      include_chaining: true,
+      include_reel: true,
+      include_suggested_users: false,
+      include_logged_out_extras: false,
+    });
+
+    return get(resp.body, 'data.user');
+  }
+
   async placeMedias(placeId, limit = 20) {
     const resp = await this.graphql(PLACE_MEDIA_GRAPH, {
       id: String(placeId),
@@ -177,5 +191,14 @@ export default class WebApi {
     });
 
     return get(resp.body, 'data.shortcode_media');
+  }
+
+  async shortcodeComments(shortcode, limit = 20) {
+    const resp = await this.graphql(COMMENTS_GRAPH, {
+      shortcode,
+      first: limit,
+    });
+
+    return get(resp.body, 'data.shortcode_media.edge_media_to_comment');
   }
 }
