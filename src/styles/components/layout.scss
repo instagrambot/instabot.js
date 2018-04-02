@@ -1,0 +1,17 @@
+.b-layout {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.b-layout__sidebar {
+  display: flex;
+
+  .b-user {
+    margin-top: auto;
+  }
+}
+
+.b-layout__body {
+  flex-grow: 1;
+}

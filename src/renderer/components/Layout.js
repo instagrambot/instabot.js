@@ -1,7 +1,14 @@
 import React from 'react';
+import Sidebar from './Sidebar';
 
 export default props => (
   <div className="b-layout">
-    { props.children }
+    <div className="b-layout__sidebar">
+      <Sidebar />
+    </div>
+
+    <div className="b-layout__body">
+      { props.children }
+    </div>
   </div>
 );

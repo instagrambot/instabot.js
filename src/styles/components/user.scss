@@ -1,0 +1,14 @@
+.b-user {
+  display: inline-flex;
+  align-items: center;
+}
+
+.b-user__avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 3px;
+}
+
+.b-user__name {
+  margin-left: 5px;
+}
