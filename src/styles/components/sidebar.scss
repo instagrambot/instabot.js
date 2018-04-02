@@ -1,6 +1,15 @@
 .b-sidebar {
-  background: #f7f7f7;
-  border-right: 1px solid #f1f1f1;
-  padding: 15px 13px;
+  background: #fff;
   display: flex;
+  flex-direction: column;
+  border-right: 1px solid #ebebeb;
+}
+
+.b-sidebar__header {
+  flex-grow: 1;
+}
+
+.b-sidebar__item {
+  padding: 15px;
+  cursor: pointer;
 }
