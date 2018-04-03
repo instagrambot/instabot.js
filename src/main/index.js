@@ -37,4 +37,5 @@ app.on('activate', () => {
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit();
+  if (!isProd) process.kill(0, 'SIGINT');
 });
