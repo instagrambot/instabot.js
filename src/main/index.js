@@ -12,6 +12,7 @@ let window;
 
 function createWindow() {
   window = new BrowserWindow();
+  window.setMenu(null);
 
   if (isProd) {
     window.loadURL(format({
