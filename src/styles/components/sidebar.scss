@@ -3,13 +3,9 @@
   display: flex;
   flex-direction: column;
   border-right: 1px solid #ebebeb;
-}
+  display: flex;
 
-.b-sidebar__header {
-  flex-grow: 1;
-}
-
-.b-sidebar__item {
-  padding: 15px;
-  cursor: pointer;
+  .b-navigator {
+    flex-grow: 1;
+  }
 }
