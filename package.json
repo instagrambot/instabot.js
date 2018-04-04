@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "babel-jest": "^22.4.3",
-    "electron": "^2.0.0-beta.6",
+    "electron": "^2.0.0-beta.7",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-import-resolver-webpack": "^0.9.0",
@@ -36,8 +36,8 @@
     "fs-extra": "^5.0.0",
     "lodash": "^4.17.5",
     "mobx": "^4.1.1",
-    "react": "^16.3.0",
-    "react-dom": "^16.3.0",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
     "request-promise-native": "^1.0.5",
     "tough-cookie": "^2.3.4"
   },
@@ -59,12 +59,29 @@
       "moment": true
     },
     "rules": {
-      "no-debugger": [0],
-      "global-require": [0],
-      "react/prop-types": [2, {"ignore": ["children"]}],
-      "react/jsx-filename-extension": [0],
-      "jsx-a11y/click-events-have-key-events": [0],
-      "jsx-a11y/no-static-element-interactions": [0]
+      "no-debugger": [
+        0
+      ],
+      "global-require": [
+        0
+      ],
+      "react/prop-types": [
+        2,
+        {
+          "ignore": [
+            "children"
+          ]
+        }
+      ],
+      "react/jsx-filename-extension": [
+        0
+      ],
+      "jsx-a11y/click-events-have-key-events": [
+        0
+      ],
+      "jsx-a11y/no-static-element-interactions": [
+        0
+      ]
     },
     "settings": {
       "import/resolver": {
