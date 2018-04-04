@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import cn from 'classnames';
 
-export default class Navigator extends Component {
+export default class Flipper extends Component {
   constructor(props) {
     super(props);
 
@@ -18,14 +18,14 @@ export default class Navigator extends Component {
 
     return (
       <div
-        className={cn('b-navigator', { 'b-navigator--active': state.active })}
+        className={cn('b-flipper', { 'b-flipper--active': state.active })}
         onClick={this.handleClick}
       >
-        <div className="b-navigator__section b-navigator__section--front">
+        <div className="b-flipper__section b-flipper__section--front">
           Front
         </div>
 
-        <div className="b-navigator__section b-navigator__section--back">
+        <div className="b-flipper__section b-flipper__section--back">
           Back
         </div>
       </div>

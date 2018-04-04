@@ -1,8 +1,8 @@
 import React from 'react';
-import Navigator from './Navigator';
+import Flipper from './Flipper';
 
 export default () => (
   <div className="b-sidebar">
-    <Navigator />
+    <Flipper />
   </div>
 );
