@@ -1,11 +1,32 @@
 .b-sidebar {
-  background: #a7b3cb;
+  background: #293742;
+  color: #bfccd5;
   display: flex;
   flex-direction: column;
-  border-right: 1px solid #ebebeb;
   display: flex;
+  width: 240px;
+}
 
-  .b-flipper {
-    flex-grow: 1;
+.b-sidebar__header {
+  transition: background 200ms, color 200ms;
+  background: lighten(#293742, 4.5%);
+  border-bottom: 1px solid darken(#293742, 3%);
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  min-height: 50px;
+  cursor: pointer;
+
+  &:hover {
+    background: lighten(#293742, 7%);
+    border-bottom: 1px solid darken(#293742, 4%);
+    color: lighten(#bfccd5, 6%);
   }
+}
+
+.b-sidebar__avatar {
+  width: 25px;
+  height: 25px;
+  border-radius: 3px;
+  margin-right: 10px;
 }
