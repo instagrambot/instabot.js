@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "license": "Apache-2.0",
   "scripts": {
-    "start": "electron src/main/index.js",
+    "start": "electron src/electron.js",
     "start:prod": "NODE_ENV=production electron src/main/index.js",
     "build": "NODE_ENV=production poi build --generate-stats dist/stats.json",
     "test": "jest --colors",
@@ -35,6 +35,7 @@
     "classnames": "^2.2.5",
     "deepmerge": "^2.1.0",
     "fs-extra": "^5.0.0",
+    "ionicons": "^3.0.0",
     "lodash": "^4.17.5",
     "mobx": "^4.1.1",
     "prop-types": "^15.6.1",

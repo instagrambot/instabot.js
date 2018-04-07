@@ -8,7 +8,7 @@ const externals = pkg.externals.map(v => [v, `require('electron').remote.require
 
 module.exports = () => ({
   title: 'Instabot',
-  entry: 'src/renderer/index.js',
+  entry: 'src/index.js',
   homepage: './',
   sourceMap: isProd ? false : 'eval-source-map',
 
