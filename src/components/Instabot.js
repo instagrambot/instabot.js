@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Layout from './Layout';
 
-export default () => (
-  <Layout />
-);
+export default class Instabot extends Component {
+  static displayName = 'Instabot'
+
+  render() {
+    return <Layout />;
+  }
+}

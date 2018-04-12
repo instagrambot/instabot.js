@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import propTypes from 'prop-types';
 
 export default class Icon extends Component {
+  static displayName = 'Icon'
+
   static propTypes = {
     name: propTypes.string.isRequired,
   }

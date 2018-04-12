@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Sidebar from './Sidebar';
 
-export default props => (
-  <div className="b-layout">
-    <div className="b-layout__sidebar">
-      <Sidebar />
-    </div>
+export default class Layout extends Component {
+  static displayName = 'Layout'
 
-    <div className="b-layout__body">
-      { props.children }
-    </div>
-  </div>
-);
+  render() {
+    return (
+      <div className="b-layout">
+        <div className="b-layout__sidebar">
+          <Sidebar />
+        </div>
+
+        <div className="b-layout__body">
+          { this.props.children }
+        </div>
+      </div>
+    );
+  }
+}

@@ -5,6 +5,8 @@ import propTypes from 'prop-types';
 import cn from 'classnames';
 
 export default class Flipper extends Component {
+  static displayName = 'Flipper'
+
   static propTypes = {
     back: propTypes.any,
     front: propTypes.any,
