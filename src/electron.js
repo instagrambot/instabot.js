@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
 const { app, BrowserWindow } = require('electron');
+const installExtension = require('electron-devtools-installer').default;
 const poi = require('poi/bin/run');
 const { join } = require('path');
 const { format } = require('url');
@@ -23,6 +24,11 @@ function createWindow() {
   } else {
     window.loadURL('http://localhost:4000/');
   }
+
+  installExtension({
+    id: 'fmkadmapgofadopljbjfkapdkoienihi',
+    electron: '^2.0.0',
+  });
 
   window.on('closed', () => { window = null; });
 }

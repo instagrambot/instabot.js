@@ -2,9 +2,10 @@
 
 import WebApi from '@/lib/web-api';
 
+const isProd = process.env.NODE_ENV !== 'production';
 let lastAwait = null;
 
-if (process.env.NODE_ENV !== 'production') {
+if (isProd) {
   Object.defineProperty(window, '$await', {
     set: (promise) => {
       promise.then((result) => {
