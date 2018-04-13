@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
+const { resolve } = require('path');
 const fromPairs = require('lodash/fromPairs');
 const pkg = require('./package.json');
 
@@ -8,7 +9,7 @@ const externals = pkg.externals.map(v => [v, `require('electron').remote.require
 
 module.exports = () => ({
   title: 'Instabot',
-  entry: 'src/index.js',
+  entry: 'app/index.js',
   homepage: './',
   sourceMap: isProd ? false : 'eval-source-map',
 
@@ -28,5 +29,7 @@ module.exports = () => ({
     config.module
       .rule('js')
       .exclude.add(/node_modules/);
+
+    config.resolve.alias.set('@', resolve('app'));
   },
 });

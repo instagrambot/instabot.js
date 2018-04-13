@@ -1,12 +1,10 @@
-const { resolve, join } = require('path');
-
-const root = resolve(__dirname, '..');
+const { resolve } = require('path');
 
 module.exports = {
   resolve: {
     root: [root],
     alias: {
-      '@': join(root, 'src'),
+      '@': resolve('app'),
     },
   },
 };
