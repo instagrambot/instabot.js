@@ -5,7 +5,9 @@
 }
 
 .b-layout__sidebar {
-  display: flex;
+  background: #fff;
+  width: 240px;
+  border-right: 1px solid #ebebeb;
 }
 
 .b-layout__body {

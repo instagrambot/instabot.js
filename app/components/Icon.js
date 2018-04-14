@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 
-export default class Icon extends Component {
+export default class extends Component {
   static displayName = 'Icon'
 
   static propTypes = {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Layout from './Layout';
 
-export default class Instabot extends Component {
+export default class extends Component {
   static displayName = 'Instabot'
 
   render() {
