@@ -23,12 +23,10 @@ function createWindow() {
     }));
   } else {
     window.loadURL('http://localhost:4000/');
-  }
 
-  installExtension({
-    id: 'fmkadmapgofadopljbjfkapdkoienihi',
-    electron: '^2.0.0',
-  });
+    installExtension({ id: 'fmkadmapgofadopljbjfkapdkoienihi', electron: '^2.0.0' }); // React
+    installExtension({ id: 'lmhkpmbekcpmknklioeibfkpmmfibljd', electron: '^2.0.0' }); // Redux
+  }
 
   window.on('closed', () => { window = null; });
 }

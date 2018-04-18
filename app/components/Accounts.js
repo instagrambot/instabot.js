@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import Icon from '@/components/Icon';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { noop } from 'lodash';
 
 export default class extends Component {
   static displayName = 'Accounts';
 
   static propTypes = {
-    onBack: propTypes.func,
+    onBack: PropTypes.func,
   }
 
   static defaultProps = {
