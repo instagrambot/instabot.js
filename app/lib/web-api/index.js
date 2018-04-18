@@ -69,6 +69,16 @@ export default class WebApi {
     return resp.body;
   }
 
+  async approveFriendship(userId) {
+    const resp = await this.http.post(`/web/friendships/${userId}/approve/`);
+    return resp.body;
+  }
+
+  async ignoreFriendship(userId) {
+    const resp = await this.http.post(`/web/friendships/${userId}/ignore/`);
+    return resp.body;
+  }
+
   async block(userId) {
     const resp = await this.http.post(`/web/friendships/${userId}/block/`);
     return resp.body;
