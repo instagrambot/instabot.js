@@ -108,6 +108,16 @@ export default class WebApi {
     return resp.body;
   }
 
+  async save(mediaId) {
+    const resp = await this.http.post(`/web/save/${mediaId}/save/`);
+    return resp.body;
+  }
+
+  async unsave(mediaId) {
+    const resp = await this.http.post(`/web/save/${mediaId}/unsave/`);
+    return resp.body;
+  }
+
   async userMedias(userId, limit = 20) {
     const resp = await this.graphql(USER_MEDIA_GRAPH, {
       id: String(userId),
