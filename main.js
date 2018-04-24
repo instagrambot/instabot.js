@@ -3,10 +3,9 @@
 const { app, BrowserWindow } = require('electron');
 const installExtension = require('electron-devtools-installer').default;
 const poi = require('poi/bin/run');
-const { join } = require('path');
+const { resolve } = require('path');
 const { format } = require('url');
 
-const devServer = poi({ mode: 'development' });
 const isProd = process.env.NODE_ENV === 'production';
 
 let window;
@@ -17,22 +16,26 @@ function createWindow() {
 
   if (isProd) {
     window.loadURL(format({
-      pathname: join(__dirname, '../../dist/index.html'),
+      pathname: resolve('dist/index.html'),
       protocol: 'file',
       slashes: true,
     }));
   } else {
-    window.loadURL('http://localhost:4000/');
-
     installExtension({ id: 'fmkadmapgofadopljbjfkapdkoienihi', electron: '^2.0.0' }); // React
     installExtension({ id: 'lmhkpmbekcpmknklioeibfkpmmfibljd', electron: '^2.0.0' }); // Redux
+
+    window.loadURL('http://localhost:4000/');
   }
 
   window.on('closed', () => { window = null; });
 }
 
 app.on('ready', () => {
-  devServer.then(() => createWindow());
+  if (isProd) {
+    createWindow();
+  } else {
+    poi({ mode: 'development' }).then(() => createWindow());
+  }
 });
 
 app.on('activate', () => {
