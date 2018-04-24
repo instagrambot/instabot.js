@@ -19,6 +19,18 @@
   }
 
   &:hover {
-    background: darken(#fff, 4%);
+    background: #f5f5f5;
   }
+}
+
+.b-accounts__body {
+  flex-grow: 1;
+}
+
+.b-accounts__footer {
+  padding: 15px;
+}
+
+.b-accounts__add {
+  display: inline-block;
 }

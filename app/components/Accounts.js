@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import Icon from '@/components/Icon';
-import PropTypes from 'prop-types';
+import Types from 'prop-types';
 import { noop } from 'lodash';
+import Icon from '@/components/Icon';
 
-export default class extends Component {
+class Accounts extends Component {
   static displayName = 'Accounts';
 
   static propTypes = {
-    onBack: PropTypes.func,
+    onBack: Types.func,
   }
 
   static defaultProps = {
@@ -25,7 +25,17 @@ export default class extends Component {
         >
           <Icon name="ios-arrow-back" /> Accounts
         </div>
+
+        <div className="b-accounts__body" />
+
+        <div className="b-accounts__footer">
+          <button className="b-btn b-btn--block">
+            <Icon name="ios-add-outline" /> Add account
+          </button>
+        </div>
       </div>
     );
   }
 }
+
+export default Accounts;
