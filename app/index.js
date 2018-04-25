@@ -6,7 +6,7 @@ import 'ionicons/dist/css/ionicons.css';
 import { webFrame } from 'electron';
 import React from 'react';
 import { render } from 'react-dom';
-import Instabot from './components/Instabot';
+import Instabot from '@/modules/Intabot';
 import '../support/repl';
 
 webFrame.setVisualZoomLevelLimits(1, 1);

@@ -21,6 +21,8 @@
 
 .b-flipper__section {
   position: relative;
+  transform: translate3d(0, 0, 0);
+  will-change: transform, opacity, visibility;
   transition: transform 250ms, opacity 250ms, visibility 250ms;
   transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   flex-shrink: 0;
@@ -35,5 +37,5 @@
 .b-flipper__section--back {
   opacity: 0;
   visibility: hidden;
-  transform: translateX(-35%);
+  transform: translate3d(-35%, 0, 0);
 }

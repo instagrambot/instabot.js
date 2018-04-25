@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Sidebar from './Sidebar';
-import Flipper from './Flipper';
-import Accounts from './Accounts';
+import Sidebar from '@/modules/Sidebar';
+import Flipper from '@/components/Flipper';
+import Accounts from '@/modules/Accounts';
 
 export default class Layout extends Component {
   static displayName = 'Layout'
