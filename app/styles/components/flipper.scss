@@ -19,11 +19,13 @@
       transform: translateX(-100%);
       visibility: visible;
       opacity: 1;
+      pointer-events: all;
     }
   }
 }
 
 .b-flipper__section {
+  background: #fff;
   position: relative;
   transform: translate3d(0, 0, 0);
   will-change: transform, opacity, visibility;
@@ -38,4 +40,5 @@
   opacity: 0;
   visibility: hidden;
   transform: translate3d(-35%, 0, 0);
+  pointer-events: none;
 }
