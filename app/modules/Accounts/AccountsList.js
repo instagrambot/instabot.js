@@ -23,6 +23,7 @@ export default class AccountsList extends Component {
     return (
       <Widget
         className="b-accounts-list"
+        label="Accounts"
         onLabelClick={onBack}
       >
         <div className="b-accounts-list__body" />
