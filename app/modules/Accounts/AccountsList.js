@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Types from 'prop-types';
 import { noop } from 'lodash';
 import Icon from '@/components/Icon';
-import Widget from '@/components/Flip';
+import Flip from '@/components/Flip';
 
 export default class AccountsList extends Component {
   static displayName = 'AccountsList';
@@ -21,7 +21,7 @@ export default class AccountsList extends Component {
     const { onAdd, onBack } = this.props;
 
     return (
-      <Widget
+      <Flip
         className="b-accounts-list"
         label="Accounts"
         onLabelClick={onBack}
@@ -33,7 +33,7 @@ export default class AccountsList extends Component {
             <Icon name="ios-add-outline" /> Add account
           </button>
         </div>
-      </Widget>
+      </Flip>
     );
   }
 }
