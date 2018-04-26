@@ -33,7 +33,6 @@ export default class extends Component {
 
     const api = {
       target,
-      is: x => x === target,
       show: this.show,
       reset: this.reset,
     };
