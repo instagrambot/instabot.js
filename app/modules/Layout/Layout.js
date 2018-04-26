@@ -9,7 +9,7 @@ export default class Layout extends Component {
   render() {
     return (
       <div className="b-layout">
-        <Flipper className="b-layout__sidebar">
+        <Flipper className="b-layout__aside">
           {(flipper) => {
             if (flipper.target === 'accounts') {
               return <Accounts onBack={() => flipper.reset()} />;

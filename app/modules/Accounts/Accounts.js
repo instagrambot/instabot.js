@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Types from 'prop-types';
 import { noop } from 'lodash';
-import Icon from '@/components/Icon';
+import Flipper from '@/components/Flipper';
+import AccountsList from './AccountsList';
+import AccountsCreate from './AccountsCreate';
 
 class Accounts extends Component {
   static displayName = 'Accounts';
@@ -18,22 +20,15 @@ class Accounts extends Component {
     const { onBack } = this.props;
 
     return (
-      <div className="b-accounts">
-        <div
-          className="b-accounts__header"
-          onClick={onBack}
-        >
-          <Icon name="ios-arrow-back" /> Accounts
-        </div>
+      <Flipper className="b-accounts">
+        {(flipper) => {
+          if (flipper.target === 'accounts.create') {
+            return <AccountsCreate onBack={() => flipper.reset()} />;
+          }
 
-        <div className="b-accounts__body" />
-
-        <div className="b-accounts__footer">
-          <button className="b-btn b-btn--block">
-            <Icon name="ios-add-outline" /> Add account
-          </button>
-        </div>
-      </div>
+          return <AccountsList onBack={onBack} onAdd={() => flipper.show('accounts.create')} />;
+        }}
+      </Flipper>
     );
   }
 }

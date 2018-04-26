@@ -2,6 +2,10 @@
   display: flex;
   overflow: hidden;
   flex-wrap: nowrap;
+
+  &:only-child {
+    height: 100%;
+  }
 }
 
 .b-flipper--active {
@@ -28,10 +32,6 @@
   flex-shrink: 0;
   width: 100%;
   height: 100%;
-
-  > * {
-    height: 100%;
-  }
 }
 
 .b-flipper__section--back {

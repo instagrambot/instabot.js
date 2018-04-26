@@ -1,0 +1,42 @@
+.b-accounts-list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  > .b-widget__body {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.b-accounts-list__header {
+  background: #fff;
+  border-bottom: 1px solid #f5f5f5;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  min-height: 50px;
+  cursor: pointer;
+
+  > .b-icon {
+    font-size: 1.2em;
+    margin-right: 10px;
+  }
+
+  &:hover {
+    background: #f5f5f5;
+  }
+}
+
+.b-accounts-list__body {
+  flex-grow: 1;
+}
+
+.b-accounts-list__footer {
+  padding: 15px;
+}
+
+.b-accounts-list__add {
+  display: inline-block;
+}
+

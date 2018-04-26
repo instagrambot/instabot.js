@@ -5,7 +5,6 @@
 }
 
 .b-sidebar__header {
-  transition: background 500ms;
   background: #fff;
   border-bottom: 1px solid #f5f5f5;
   padding: 12px 20px;
@@ -37,7 +36,6 @@
 }
 
 .b-sidebar__item {
-  transition: background 500ms;
   padding: 5px 20px;
   cursor: pointer;
   display: flex;
