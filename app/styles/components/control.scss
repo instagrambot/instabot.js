@@ -1,0 +1,49 @@
+.b-control {
+  transition: background 150ms, border-color 150ms, box-shadow 150ms;
+  border: 0;
+  background: #f5f5f5;
+  position: relative;
+  border-radius: 2px;
+  margin-bottom: 15px;
+
+  &:hover {
+    background: #f0f0f0;
+  }
+}
+
+.b-control--focus {
+  box-shadow: 0 0 0 1px #fff, 0 0 0 2px darken(#f0f0f0, 10%);
+
+  .b-control__label {
+    transform: translateX(5px) translateY(calc(-100% - 3px)) scale(0.75);
+  }
+}
+
+.b-control--filled {
+  .b-control__label {
+    transform: translateX(5px) translateY(calc(-100% - 3px)) scale(0.75);
+  }
+}
+
+.b-control__label {
+  transition: transform 200ms;
+  opacity: 0.5;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateX(11px) translateY(-50%);
+}
+
+.b-control__input {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  padding: 18px 11px 6px 11px;
+  font-size: 1em;
+  position: relative;
+  z-index: 1;
+
+  &:focus {
+    outline: none;
+  }
+}

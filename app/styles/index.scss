@@ -2,10 +2,12 @@
 @import './components/layout';
 @import './components/widget';
 @import './components/btn';
+@import './components/control';
 @import './components/sidebar';
 @import './components/flipper';
 @import './components/accounts';
 @import './components/accounts-list';
+@import './components/accounts-create';
 
 *, *::after, *::before {
   box-sizing: border-box;
