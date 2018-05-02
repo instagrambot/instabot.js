@@ -1,5 +1,22 @@
 .b-accounts-create {
   .b-widget__body {
-    padding: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
   }
+}
+
+.b-accounts-create {
+  // border: 1px solid red;
+}
+
+.b-accounts-create__form {
+  // border: 1px solid red;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.b-accounts-create__body {
+  flex-grow: 1;
 }
