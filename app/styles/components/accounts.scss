@@ -1,3 +1,36 @@
 .b-accounts {
   display: flex;
+
+  .b-widget__body {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .b-form {
+    flex-grow: 1;
+  }
+}
+
+.b-accounts__create {
+  // ..
+}
+
+.b-accounts__list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  > .b-widget__body {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.b-accounts__list-body {
+  flex-grow: 1;
+}
+
+.b-accounts__list-footer {
+  // padding: 15px;
 }

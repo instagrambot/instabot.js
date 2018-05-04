@@ -22,13 +22,13 @@ export default class AccountsList extends Component {
 
     return (
       <Flip
-        className="b-accounts-list"
+        className="b-accounts__list"
         label="Accounts"
         onLabelClick={onBack}
       >
-        <div className="b-accounts-list__body" />
+        <div className="b-accounts__list-body" />
 
-        <div className="b-accounts-list__footer">
+        <div className="b-accounts__list-footer">
           <button className="b-btn b-btn--block" onClick={onAdd}>
             <Icon name="ios-add-outline" /> Add account
           </button>

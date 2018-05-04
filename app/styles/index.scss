@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+
+@import './animation';
 @import './components/layout';
 @import './components/widget';
 @import './components/btn';
@@ -6,8 +8,7 @@
 @import './components/sidebar';
 @import './components/flipper';
 @import './components/accounts';
-@import './components/accounts-list';
-@import './components/accounts-create';
+@import './components/form';
 
 *, *::after, *::before {
   box-sizing: border-box;

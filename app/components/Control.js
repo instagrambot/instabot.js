@@ -76,23 +76,21 @@ export default class Control extends Component {
 
     return (
       <div className={classes}>
-        <div className="b-control__body">
-          <div className="b-control__label">
-            { capitalize(label || name) }
-          </div>
-
-          <input
-            ref={this.inputEl}
-            className="b-control__input"
-            name={name}
-            type={type}
-            value={value}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            onKeyPress={handleChange}
-            onChange={handleChange}
-          />
+        <div className="b-control__label">
+          { capitalize(label || name) }
         </div>
+
+        <input
+          ref={this.inputEl}
+          className="b-control__input"
+          name={name}
+          type={type}
+          value={value}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onKeyPress={handleChange}
+          onChange={handleChange}
+        />
 
         <div className="b-control__hint">
           &nbsp;{ error }
