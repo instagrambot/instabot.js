@@ -47,10 +47,6 @@ export default class AccountsCreate extends Component {
         <Formik onSubmit={handleSubmit} validationSchema={schema}>
           {f => (
             <form className="b-form" onSubmit={f.handleSubmit}>
-              <div className="b-form__alert b-form__alert--error">
-                Wrong login or password.
-              </div>
-
               <div className="b-form__body">
                 <Control
                   name="login"
