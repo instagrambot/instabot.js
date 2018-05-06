@@ -1,11 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Types from 'prop-types';
 import cn from 'classnames';
-import { noop } from 'lodash';
+import { noop, get } from 'lodash';
 import { Formik } from 'formik';
 import Yup from 'yup';
+
 import Flip from '@/components/Flip';
 import Control from '@/components/Control';
+import WebApi from '@/lib/web-api';
+import { openExternal } from '@/lib/utils';
+
+const CHECKPOINT_REQUIRED = 'checkpoint_required';
 
 export default class AccountsCreate extends Component {
   static propTypes = {
@@ -17,25 +22,55 @@ export default class AccountsCreate extends Component {
   }
 
   state = {
+    error: null,
     isLoading: false,
   }
+
+  api = new WebApi()
 
   schema = Yup.object().shape({
     login: Yup.string().required('*'),
     password: Yup.string().required('*'),
   })
 
-  handleSubmit = () => {
-    this.setState({ isLoading: true });
+  handleSubmit = ({ login, password }) => {
+    this.setState({ isLoading: true, error: null });
 
-    setTimeout(() => {
-      this.setState({ isLoading: false });
-    }, 2000);
+    const request = this.api.login(login, password);
+
+    request.then(this.handleResponse);
+    request.catch(this.handleError);
+    request.finally(() => { this.setState({ isLoading: false }); });
   }
+
+  handleResponse = (resp) => {
+    if (!resp.authenticated) {
+      this.setState({ error: 'Wrong login or password' });
+    }
+  }
+
+  handleError = (err) => {
+    const checkpointUrl = get(err, 'response.body.checkpoint_url');
+    const checkpointRequired = err.message === CHECKPOINT_REQUIRED;
+
+    if (checkpointRequired && checkpointUrl) {
+      this.setState({ error: this.renderCheckpoint(checkpointUrl) });
+      return;
+    }
+
+    this.setState({ error: err.message });
+  }
+
+  renderCheckpoint = url => (
+    <Fragment>
+        Instagram login confirmation required<br />
+      <a href={`https://instagram.com${url}`} onClick={openExternal}>{ url }</a>
+    </Fragment>
+  )
 
   render() {
     const { onBack } = this.props;
-    const { isLoading } = this.state;
+    const { isLoading, error } = this.state;
     const { handleSubmit, schema } = this;
 
     return (
@@ -47,6 +82,10 @@ export default class AccountsCreate extends Component {
         <Formik onSubmit={handleSubmit} validationSchema={schema}>
           {f => (
             <form className="b-form" onSubmit={f.handleSubmit}>
+              {error && (
+                <div className="b-form__alert b-form__alert--error">{ error }</div>
+              )}
+
               <div className="b-form__body">
                 <Control
                   name="login"

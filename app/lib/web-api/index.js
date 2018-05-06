@@ -13,6 +13,21 @@ import {
   USER_STORIES_GRAPH,
 } from './constants';
 
+const normalizeError = (err) => {
+  const respMessage = get(err, 'response.body.message');
+  const causeCode = get(err, 'cause.code');
+
+  /* eslint-disable no-param-reassign */
+  if (causeCode) {
+    err.message = `Network issue (${causeCode})`;
+  } else if (respMessage) {
+    if (respMessage) err.message = respMessage;
+  }
+  /* eslint-enable no-param-reassign */
+
+  return err;
+};
+
 export default class WebApi {
   constructor(options = {}) {
     const { cookies } = options;
@@ -30,12 +45,16 @@ export default class WebApi {
   }
 
   async login(username, password) {
-    const resp = await this.http.post('/accounts/login/ajax/', {
-      jar: true,
-      form: { username, password },
-    });
+    try {
+      const resp = await this.http.post('/accounts/login/ajax/', {
+        jar: true,
+        form: { username, password },
+      });
 
-    return resp.body;
+      return resp.body;
+    } catch (err) {
+      throw normalizeError(err);
+    }
   }
 
   async account(name) {
