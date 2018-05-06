@@ -43,6 +43,9 @@ export default class Http {
   }
 
   async request(options = {}) {
+    console.group(`${options.method} %c${options.uri}`, 'color: #dc262c');
+    console.info('%cREQUEST:', 'color: #8367FF', options);
+
     // Prepare cookies if first request
     if (this.cookies.isEmpty()) {
       const resp = await this.send.get('/');
@@ -55,8 +58,14 @@ export default class Http {
 
     if (jar) this.cookies.fromResponse(resp);
 
-    if (options.resolveWithFullResponse) return resp;
+    if (options.resolveWithFullResponse) {
+      console.info('%cRESPONSE:', 'color: #8367FF', resp.body);
+      console.groupEnd();
+      return resp;
+    }
 
+    console.info('%cRESPONSE:', 'color: #8367FF', resp.body);
+    console.groupEnd();
     return reduceResp(resp);
   }
 

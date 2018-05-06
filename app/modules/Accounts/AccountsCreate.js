@@ -1,18 +1,21 @@
 import React, { Component, Fragment } from 'react';
 import Types from 'prop-types';
+import { connect } from 'react-redux';
 import cn from 'classnames';
 import { noop, get } from 'lodash';
 import { Formik } from 'formik';
 import Yup from 'yup';
 
+import { openExternal } from '@/lib/utils';
+import WebApi from '@/lib/web-api';
 import Flip from '@/components/Flip';
 import Control from '@/components/Control';
-import WebApi from '@/lib/web-api';
-import { openExternal } from '@/lib/utils';
 
 const CHECKPOINT_REQUIRED = 'checkpoint_required';
 
-export default class AccountsCreate extends Component {
+const AccountsCreate = class extends Component {
+  static displayName = 'AccountsCreate'
+
   static propTypes = {
     onBack: Types.func,
   }
@@ -38,15 +41,19 @@ export default class AccountsCreate extends Component {
 
     const request = this.api.login(login, password);
 
-    request.then(this.handleResponse);
+    request.then(response => this.handleResponse({ login, response }));
     request.catch(this.handleError);
-    request.finally(() => { this.setState({ isLoading: false }); });
   }
 
-  handleResponse = (resp) => {
-    if (!resp.authenticated) {
-      this.setState({ error: 'Wrong login or password' });
+  handleResponse = async ({ response }) => {
+    if (response.authenticated) {
+      this.setState({ isLoading: false });
+      return;
+
+      // const account = await this.api.account(login);
     }
+
+    this.setState({ error: 'Wrong login or password', isLoading: false });
   }
 
   handleError = (err) => {
@@ -54,17 +61,25 @@ export default class AccountsCreate extends Component {
     const checkpointRequired = err.message === CHECKPOINT_REQUIRED;
 
     if (checkpointRequired && checkpointUrl) {
-      this.setState({ error: this.renderCheckpoint(checkpointUrl) });
+      this.setState({
+        error: this.renderCheckpoint(checkpointUrl),
+        isLoading: false,
+      });
+
       return;
     }
 
-    this.setState({ error: err.message });
+    this.setState({
+      error: err.message,
+      isLoading: false,
+    });
   }
 
   renderCheckpoint = url => (
     <Fragment>
-        Instagram login confirmation required<br />
-      <a href={`https://instagram.com${url}`} onClick={openExternal}>{ url }</a>
+      <a href={`https://instagram.com${url}`} onClick={openExternal}>
+        Instagram: checkpoint required<br />
+      </a>
     </Fragment>
   )
 
@@ -119,4 +134,6 @@ export default class AccountsCreate extends Component {
       </Flip>
     );
   }
-}
+};
+
+export default connect()(AccountsCreate);
