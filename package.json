@@ -16,7 +16,7 @@
   "devDependencies": {
     "babel-eslint": "^8.2.3",
     "babel-jest": "^22.4.3",
-    "electron": "^2.0.0-beta.8",
+    "electron": "^2.0.0",
     "electron-devtools-installer": "^2.2.3",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
@@ -27,7 +27,7 @@
     "given2": "^2.1.5",
     "jest": "^22.4.3",
     "mock-fs": "^4.4.2",
-    "node-sass": "^4.8.3",
+    "node-sass": "^4.9.0",
     "poi": "^9.6.13",
     "poi-preset-babel-minify": "^1.0.3",
     "sass-loader": "^7.0.1"
@@ -36,7 +36,7 @@
     "classnames": "^2.2.5",
     "deepmerge": "^2.1.0",
     "formik": "^0.11.11",
-    "fs-extra": "^5.0.0",
+    "fs-extra": "^6.0.0",
     "ionicons": "^3.0.0",
     "lodash": "^4.17.10",
     "mobx": "^4.1.1",

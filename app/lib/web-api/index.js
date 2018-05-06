@@ -14,8 +14,10 @@ import {
 } from './constants';
 
 export default class WebApi {
-  constructor() {
-    this.http = new Http();
+  constructor(options = {}) {
+    const { cookies } = options;
+
+    this.http = new Http({ cookies });
   }
 
   graphql(queryHash, variables = {}) {

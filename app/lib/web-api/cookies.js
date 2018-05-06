@@ -6,8 +6,8 @@ import { Cookie } from 'tough-cookie';
 import { BASE_URL } from './constants';
 
 export default class Cookies {
-  constructor(response) {
-    this.values = response ? this.fromResponse(response) : [];
+  constructor(values = []) {
+    this.values = values;
   }
 
   isEmpty() {
@@ -15,9 +15,11 @@ export default class Cookies {
   }
 
   fromResponse(response) {
-    const setCookie = response.headers['set-cookie'];
+    this.fromHeader(response.headers['set-cookie']);
+  }
 
-    const cookies = setCookie
+  fromHeader(cookiesHeader) {
+    const cookies = cookiesHeader
       .map(Cookie.parse)
       .map(cookie => omit(cookie.toJSON(), ['expires', 'creation', 'maxAge']));
 

@@ -7,8 +7,10 @@ import { BASE_URL, USER_AGENT } from './constants';
 const reduceResp = resp => pick(resp, ['body', 'headers', 'statusCode']);
 
 export default class Http {
-  constructor() {
-    this.cookies = new Cookies();
+  constructor(options = {}) {
+    const { cookies } = options;
+
+    this.cookies = new Cookies(cookies);
 
     this.send = request.defaults({
       baseUrl: BASE_URL,
