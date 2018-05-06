@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 
 import { createStore, combineReducers } from 'redux';
-import accounts from './accounts';
+import { reducer as accounts } from './accounts';
 
 const reducers = combineReducers({ accounts });
 

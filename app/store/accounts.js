@@ -1,14 +1,26 @@
-import { ADD_ACCOUNT, REMOVE_ACCOUNT } from './actions';
+import { ACCOUNTS_CREATE, ACCOUNTS_REMOVE } from './types';
 
-export default (state = [], { type, payload }) => {
+export const reducer = (state = [], { type, payload }) => {
   switch (type) {
-    case ADD_ACCOUNT:
+    case ACCOUNTS_CREATE:
       return [...state, payload];
 
-    case REMOVE_ACCOUNT:
+    case ACCOUNTS_REMOVE:
       return state.filter(x => x !== payload);
 
     default:
       return state;
   }
+};
+
+export default {
+  create: account => ({
+    type: ACCOUNTS_CREATE,
+    payload: account,
+  }),
+
+  remove: account => ({
+    type: ACCOUNTS_REMOVE,
+    payload: account,
+  }),
 };
