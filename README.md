@@ -1,7 +1,8 @@
-<center>
-<img width="130" height="130" alt="instabot.js" src="https://raw.githubusercontent.com/instagrambot/instabot.js/master/app/assets/logo.png">
-<h1>Instabot.js</h1>
-</center>
+<h1 align="center">
+  <img width="130" height="130" alt="instabot.js" src="https://raw.githubusercontent.com/instagrambot/instabot.js/master/app/assets/logo.png">
+  <br>
+  Instabot.js
+</h1>
 
 ⚠️ *__The project is under early development, many bugs and architect changes are expected.__*
 
