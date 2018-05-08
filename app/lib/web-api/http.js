@@ -1,8 +1,11 @@
+import crypto from 'crypto';
 import request from 'request-promise-native';
 import deepmerge from 'deepmerge';
-import { pick } from 'lodash';
+import { pick, get } from 'lodash';
 import Cookies from './cookies';
 import { BASE_URL, USER_AGENT } from './constants';
+
+const RHX_REGEX = /"rhx_gis":"(.+?)"/;
 
 const reduceResp = resp => pick(resp, ['body', 'headers', 'statusCode']);
 
@@ -11,6 +14,7 @@ export default class Http {
     const { cookies } = options;
 
     this.cookies = new Cookies(cookies);
+    this.rhx = null;
 
     this.send = request.defaults({
       baseUrl: BASE_URL,
@@ -32,8 +36,12 @@ export default class Http {
   }
 
   optionsFrom(options) {
+    const path = options.uri.replace(/\?.*$/, '');
+    const gis = crypto.createHash('md5').update(`${this.rhx}:${path}`).digest('hex');
+
     const headers = {
       'x-csrftoken': this.cookies.valueOf('csrftoken'),
+      'x-instagram-gis': gis,
     };
 
     const opts = deepmerge({ headers }, options);
@@ -42,15 +50,20 @@ export default class Http {
     return opts;
   }
 
+  async prepare() {
+    if (!this.cookies.isEmpty()) return;
+
+    const resp = await this.send.get('/');
+
+    this.cookies.fromResponse(resp);
+    this.rhx = get(RHX_REGEX.exec(resp.body), 1);
+  }
+
   async request(options = {}) {
     console.group(`${options.method} %c${options.uri}`, 'color: #dc262c');
     console.info('%cREQUEST:', 'color: #8367FF', options);
 
-    // Prepare cookies if first request
-    if (this.cookies.isEmpty()) {
-      const resp = await this.send.get('/');
-      this.cookies.fromResponse(resp);
-    }
+    await this.prepare();
 
     const { jar } = options;
     const opts = this.optionsFrom(options);

@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+
 import { get } from 'lodash';
 import Http from './http';
 
@@ -13,17 +15,20 @@ import {
   USER_STORIES_GRAPH,
 } from './constants';
 
-const normalizeError = (err) => {
+const failure = (err, message) => {
+  if (message) {
+    err.message = message;
+    return err;
+  }
+
   const respMessage = get(err, 'response.body.message');
   const causeCode = get(err, 'cause.code');
 
-  /* eslint-disable no-param-reassign */
   if (causeCode) {
     err.message = `Network issue (${causeCode})`;
   } else if (respMessage) {
     if (respMessage) err.message = respMessage;
   }
-  /* eslint-enable no-param-reassign */
 
   return err;
 };
@@ -31,7 +36,6 @@ const normalizeError = (err) => {
 export default class WebApi {
   constructor(options = {}) {
     const { cookies } = options;
-
     this.http = new Http({ cookies });
   }
 
@@ -44,22 +48,46 @@ export default class WebApi {
     });
   }
 
-  async login(username, password) {
-    try {
-      const resp = await this.http.post('/accounts/login/ajax/', {
-        jar: true,
-        form: { username, password },
+  login(username, password) {
+    return new Promise((resolve, reject) => {
+      const auth = this.auth(username, password);
+
+      auth.then(() => {
+        const account = this.profile().then(p => this.account(p.username));
+
+        account.then(resolve);
+        account.catch((err) => {
+          reject(failure(err, 'Account info request error'));
+        });
       });
 
-      return resp.body;
-    } catch (err) {
-      throw normalizeError(err);
-    }
+      auth.catch(reject);
+    });
+  }
+
+  async auth(username, password) {
+    const resp = await this.http.post('/accounts/login/ajax/', {
+      jar: true,
+      form: { username, password },
+    });
+
+    const { body } = resp;
+
+    if (body.authenticated) return body;
+
+    const err = new Error('Incorrect login or password');
+    err.response = body;
+    throw err;
+  }
+
+  async profile() {
+    const resp = await this.http.get('/accounts/edit/?__a=1');
+    return resp.body.form_data;
   }
 
   async account(name) {
-    const resp = await this.http.get(`/${name}?__a=1`);
-    return resp.body;
+    const resp = await this.http.get(`/${name}/?__a=1`);
+    return get(resp.body, 'graphql.user');
   }
 
   async followers(userId, limit = 20) {

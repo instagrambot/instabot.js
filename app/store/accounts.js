@@ -6,7 +6,7 @@ export const reducer = (state = [], { type, payload }) => {
       return [...state, payload];
 
     case ACCOUNTS_REMOVE:
-      return state.filter(x => x !== payload);
+      return state.filter(x => x.id !== payload);
 
     default:
       return state;
@@ -14,13 +14,13 @@ export const reducer = (state = [], { type, payload }) => {
 };
 
 export default {
-  create: account => ({
+  create: payload => ({
     type: ACCOUNTS_CREATE,
-    payload: account,
+    payload,
   }),
 
-  remove: account => ({
+  remove: id => ({
     type: ACCOUNTS_REMOVE,
-    payload: account,
+    payload: id,
   }),
 };

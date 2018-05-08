@@ -8,6 +8,7 @@ import Yup from 'yup';
 
 import { openExternal } from '@/lib/utils';
 import WebApi from '@/lib/web-api';
+import Accounts from '@/store/accounts';
 import Flip from '@/components/Flip';
 import Control from '@/components/Control';
 
@@ -18,10 +19,12 @@ const AccountsCreate = class extends Component {
 
   static propTypes = {
     onBack: Types.func,
+    dispatch: Types.func,
   }
 
   static defaultProps = {
     onBack: noop,
+    dispatch: noop,
   }
 
   state = {
@@ -41,19 +44,22 @@ const AccountsCreate = class extends Component {
 
     const request = this.api.login(login, password);
 
-    request.then(response => this.handleResponse({ login, response }));
+    request.then(this.handleResponse);
     request.catch(this.handleError);
+    request.finally(() => this.setState({ isLoading: false }));
   }
 
-  handleResponse = async ({ response }) => {
-    if (response.authenticated) {
-      this.setState({ isLoading: false });
-      return;
+  handleResponse = (resp) => {
+    const action = Accounts.create({
+      id: +resp.id,
+      username: resp.username,
+      title: resp.full_name,
+      verified: resp.is_verified,
+      avatar: resp.profile_pic_url,
+    });
 
-      // const account = await this.api.account(login);
-    }
-
-    this.setState({ error: 'Wrong login or password', isLoading: false });
+    this.props.dispatch(action);
+    this.props.onBack();
   }
 
   handleError = (err) => {
