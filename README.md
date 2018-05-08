@@ -4,7 +4,9 @@
   Instabot.js
 </h1>
 
+<p align="center">
 ⚠️ *__The project is under early development, many bugs and architect changes are expected.__*
+</p>
 
 We are working on an experimental development which is an attempt
 to recreate instabot as a pluggable desktop application with a simple and friendly ui.
