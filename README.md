@@ -1,4 +1,7 @@
-# Instabot.js
+<center>
+<img width="130" height="130" alt="instabot.js" src="https://raw.githubusercontent.com/instagrambot/instabot.js/master/app/assets/logo.png">
+<h1>Instabot.js</h1>
+</center>
 
 ⚠️ *__The project is under early development, many bugs and architect changes are expected.__*
 
