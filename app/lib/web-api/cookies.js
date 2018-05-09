@@ -10,6 +10,14 @@ export default class Cookies {
     this.values = values;
   }
 
+  get() {
+    return [...this.values];
+  }
+
+  set(values) {
+    this.values = [...values];
+  }
+
   isEmpty() {
     return this.values.length === 0;
   }

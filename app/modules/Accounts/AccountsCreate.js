@@ -46,7 +46,7 @@ const AccountsCreate = class extends Component {
 
     request.then(this.handleResponse);
     request.catch(this.handleError);
-    request.finally(() => this.setState({ isLoading: false }));
+    request.finally(() => { this.setState({ isLoading: false }); });
   }
 
   handleResponse = (resp) => {
@@ -56,17 +56,19 @@ const AccountsCreate = class extends Component {
       title: resp.full_name,
       verified: resp.is_verified,
       avatar: resp.profile_pic_url,
+      cookies: this.api.http.cookies.get(),
     });
 
     this.props.dispatch(action);
     this.props.onBack();
+    this.api = new WebApi();
   }
 
   handleError = (err) => {
+    const checkpointRequired = get(err, 'response.body.message') === CHECKPOINT_REQUIRED;
     const checkpointUrl = get(err, 'response.body.checkpoint_url');
-    const checkpointRequired = err.message === CHECKPOINT_REQUIRED;
 
-    if (checkpointRequired && checkpointUrl) {
+    if (checkpointRequired) {
       this.setState({
         error: this.renderCheckpoint(checkpointUrl),
         isLoading: false,

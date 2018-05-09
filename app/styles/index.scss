@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
 
-@import './animation';
+@import './animations';
 @import './components/layout';
 @import './components/widget';
 @import './components/btn';
@@ -13,6 +13,14 @@
 *, *::after, *::before {
   box-sizing: border-box;
   user-select: none;
+}
+
+a {
+  color: #4979a3;
+
+  &:hover {
+    color: #6f99be;
+  }
 }
 
 html, body {
