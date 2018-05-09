@@ -1,11 +1,14 @@
 /* eslint-disable no-underscore-dangle */
 
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, compose } from 'redux';
+import persistState from 'redux-localstorage';
 import { reducer as accounts } from './accounts';
 
 const reducers = combineReducers({ accounts });
 
-export default createStore(
-  reducers,
+const enhancer = compose(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  persistState(),
 );
+
+export default createStore(reducers, enhancer);
