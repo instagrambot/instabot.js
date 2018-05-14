@@ -7,7 +7,7 @@ import { Formik } from 'formik';
 import Yup from 'yup';
 
 import { openExternal } from '@/lib/utils';
-import WebApi from '@/lib/web-api';
+import Instagram from '@/lib/instagram';
 import Accounts from '@/store/accounts';
 import Flip from '@/components/Flip';
 import Control from '@/components/Control';
@@ -32,7 +32,7 @@ const AccountsCreate = class extends Component {
     isLoading: false,
   }
 
-  api = new WebApi()
+  instagram = new Instagram()
 
   schema = Yup.object().shape({
     login: Yup.string().required('*'),
@@ -42,7 +42,7 @@ const AccountsCreate = class extends Component {
   handleSubmit = ({ login, password }) => {
     this.setState({ isLoading: true, error: null });
 
-    const request = this.api.login(login, password);
+    const request = this.instagram.login(login, password);
 
     request.then(this.handleResponse);
     request.catch(this.handleError);
@@ -56,12 +56,12 @@ const AccountsCreate = class extends Component {
       title: resp.full_name,
       verified: resp.is_verified,
       avatar: resp.profile_pic_url,
-      cookies: this.api.http.cookies.get(),
+      http: this.instagram.http.dump(),
     });
 
     this.props.dispatch(action);
     this.props.onBack();
-    this.api = new WebApi();
+    this.instagram = new Instagram();
   }
 
   handleError = (err) => {

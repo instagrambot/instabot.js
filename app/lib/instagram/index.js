@@ -33,10 +33,9 @@ const failure = (err, message) => {
   return err;
 };
 
-export default class WebApi {
-  constructor(options = {}) {
-    const { cookies } = options;
-    this.http = new Http({ cookies });
+export default class Instagram {
+  constructor() {
+    this.http = new Http();
   }
 
   graphql(queryHash, variables = {}) {

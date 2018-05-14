@@ -6,6 +6,25 @@ import Cookies from './cookies';
 import { BASE_URL, USER_AGENT } from './constants';
 
 const RHX_REGEX = /"rhx_gis":"(.+?)"/;
+const SET_COOKIE = 'set-cookie';
+
+const RESPONSE_DEFAULTS = {
+  baseUrl: BASE_URL,
+  resolveWithFullResponse: true,
+  gzip: true,
+  json: true,
+  headers: {
+    origin: BASE_URL,
+    referer: BASE_URL,
+    pragma: 'no-cache',
+    'user-agent': USER_AGENT,
+    'accept-language': 'en-US,en;q=0.9',
+    'accept-encoding': 'gzip, deflate, br',
+    'cache-control': 'no-cache',
+    'x-instagram-ajax': 1,
+    'x-requested-with': 'XMLHttpRequest',
+  },
+};
 
 const reduceResp = resp => pick(resp, ['body', 'headers', 'statusCode']);
 
@@ -15,29 +34,33 @@ export default class Http {
 
     this.cookies = new Cookies(cookies);
     this.rhx = null;
-
-    this.send = request.defaults({
-      baseUrl: BASE_URL,
-      resolveWithFullResponse: true,
-      gzip: true,
-      json: true,
-      headers: {
-        origin: BASE_URL,
-        referer: BASE_URL,
-        pragma: 'no-cache',
-        'user-agent': USER_AGENT,
-        'accept-language': 'en-US,en;q=0.9',
-        'accept-encoding': 'gzip, deflate, br',
-        'cache-control': 'no-cache',
-        'x-instagram-ajax': 1,
-        'x-requested-with': 'XMLHttpRequest',
-      },
-    });
+    this.doRequest = request.defaults(RESPONSE_DEFAULTS);
   }
 
-  optionsFrom(options) {
+  dump() {
+    return {
+      rhx: this.rhx,
+      cookies: this.cookies.get(),
+    };
+  }
+
+  load({ rhx, cookies } = {}) {
+    this.rhx = rhx;
+    this.cookies.set(cookies);
+  }
+
+  clear() {
+    this.rhx = null;
+    this.cookies.clear();
+  }
+
+  prepareOptions(options) {
     const path = options.uri.replace(/\?.*$/, '');
-    const gis = crypto.createHash('md5').update(`${this.rhx}:${path}`).digest('hex');
+
+    const gis = crypto
+      .createHash('md5')
+      .update(`${this.rhx}:${path}`)
+      .digest('hex');
 
     const headers = {
       'x-csrftoken': this.cookies.valueOf('csrftoken'),
@@ -53,9 +76,9 @@ export default class Http {
   async prepare() {
     if (!this.cookies.isEmpty()) return;
 
-    const resp = await this.send.get('/');
+    const resp = await this.doRequest.get('/');
 
-    this.cookies.fromResponse(resp);
+    this.cookies.parse(resp.headers[SET_COOKIE]);
     this.rhx = get(RHX_REGEX.exec(resp.body), 1);
   }
 
@@ -63,11 +86,10 @@ export default class Http {
     await this.prepare();
 
     const { jar } = options;
-    const opts = this.optionsFrom(options);
-    const resp = await this.send(opts);
+    const opts = this.prepareOptions(options);
+    const resp = await this.doRequest(opts);
 
-    if (jar) this.cookies.fromResponse(resp);
-
+    if (jar) this.cookies.parse(resp.headers[SET_COOKIE]);
     if (options.resolveWithFullResponse) return resp;
 
     return reduceResp(resp);

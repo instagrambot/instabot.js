@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 
-import WebApi from '@/lib/web-api';
+import Instagram from '@/lib/instagram';
 
 const isProd = process.env.NODE_ENV !== 'production';
 let lastAwait = null;
@@ -20,6 +20,6 @@ if (isProd) {
   });
 
   window.$repl = {
-    api: new WebApi(),
+    api: new Instagram(),
   };
 }

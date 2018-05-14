@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 
-import { uniqWith, uniqBy, isEqual, omit } from 'lodash';
+import { uniqBy, omit } from 'lodash';
 import request from 'request-promise-native';
 import { Cookie } from 'tough-cookie';
 import { BASE_URL } from './constants';
@@ -18,21 +18,20 @@ export default class Cookies {
     this.values = [...values];
   }
 
+  clear() {
+    this.values = [];
+  }
+
   isEmpty() {
     return this.values.length === 0;
   }
 
-  fromResponse(response) {
-    this.fromHeader(response.headers['set-cookie']);
-  }
-
-  fromHeader(cookiesHeader) {
-    const cookies = cookiesHeader
+  parse(setCookie) {
+    const cookies = setCookie
       .map(Cookie.parse)
       .map(cookie => omit(cookie.toJSON(), ['expires', 'creation', 'maxAge']));
 
-    const values = uniqBy([...cookies, ...this.values], 'key');
-    this.values = uniqWith(values, isEqual);
+    this.values = uniqBy([...cookies, ...this.values], 'key');
   }
 
   toJar() {

@@ -1,7 +1,7 @@
-import WebApi from './index';
+import Instagram from './index';
 
 describe('WebApi', () => {
   it('should be defined', () => {
-    expect(WebApi).toBeDefined();
+    expect(Instagram).toBeDefined();
   });
 });
