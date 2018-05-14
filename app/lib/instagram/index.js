@@ -79,6 +79,13 @@ export default class Instagram {
     throw err;
   }
 
+  challenge(url, code) {
+    return this.http.post(url, {
+      jar: true,
+      form: { security_code: code },
+    });
+  }
+
   async profile() {
     const resp = await this.http.get('/accounts/edit/?__a=1');
     return resp.body.form_data;
