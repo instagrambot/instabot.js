@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import cn from 'classnames';
 import { noop, get } from 'lodash';
 import { Formik } from 'formik';
-import Yup from 'yup';
+import * as Yup from 'yup';
 
 import { openExternal } from '@/lib/utils';
 import Instagram from '@/lib/instagram';
