@@ -10,13 +10,10 @@ export default class Layout extends Component {
     return (
       <div className="b-layout">
         <Flipper className="b-layout__aside">
-          {(flipper) => {
-            if (flipper.target === 'accounts') {
-              return <Accounts onBack={() => flipper.reset()} />;
-            }
-
-            return <Sidebar onClick={(e, type) => flipper.show(type)} />;
-          }}
+          {f => ({
+            default: <Sidebar onClick={(e, type) => f.show(type)} />,
+            accounts: <Accounts onBack={() => f.reset()} />,
+          })}
         </Flipper>
 
         <div className="b-layout__body">

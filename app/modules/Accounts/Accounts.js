@@ -21,13 +21,10 @@ class Accounts extends Component {
 
     return (
       <Flipper className="b-accounts">
-        {(flipper) => {
-          if (flipper.target === 'accounts.create') {
-            return <AccountsCreate onBack={() => flipper.reset()} />;
-          }
-
-          return <AccountsList onBack={onBack} onAdd={() => flipper.show('accounts.create')} />;
-        }}
+        {f => ({
+          default: <AccountsList onBack={onBack} onAdd={() => f.show('create')} />,
+          create: <AccountsCreate onBack={() => f.reset()} />,
+        })}
       </Flipper>
     );
   }
