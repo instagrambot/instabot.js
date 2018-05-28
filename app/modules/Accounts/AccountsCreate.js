@@ -9,7 +9,7 @@ import Yup from 'yup';
 import { openExternal } from '@/lib/utils';
 import Instagram from '@/lib/instagram';
 import Accounts from '@/store/accounts';
-import Flip from '@/components/Flip';
+import Widget from '@/components/Widget';
 import Control from '@/components/Control';
 
 const CHECKPOINT_REQUIRED = 'checkpoint_required';
@@ -97,7 +97,7 @@ const AccountsCreate = class extends Component {
     const { handleSubmit, schema } = this;
 
     return (
-      <Flip
+      <Widget
         className="b-accounts__create"
         label="Add account"
         onLabelClick={onBack}
@@ -139,7 +139,7 @@ const AccountsCreate = class extends Component {
             </form>
           )}
         </Formik>
-      </Flip>
+      </Widget>
     );
   }
 };

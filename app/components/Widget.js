@@ -4,8 +4,8 @@ import { noop } from 'lodash';
 import cn from 'classnames';
 import Icon from '@/components/Icon';
 
-export default class Flip extends Component {
-  static displayName = 'Flip';
+export default class Widget extends Component {
+  static displayName = 'Widget';
 
   static propTypes = {
     label: Types.string,
