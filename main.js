@@ -1,18 +1,30 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, session } = require('electron');
 const installExtension = require('electron-devtools-installer').default;
 const poi = require('poi/bin/run');
 const { resolve } = require('path');
 const { format } = require('url');
 
+const INSTAGRAM_REGEX = /^https?:\/\/www.instagram.com/;
 const isProd = process.env.NODE_ENV === 'production';
+const isInstagram = url => INSTAGRAM_REGEX.test(url);
 
 let window;
 
 function createWindow() {
   window = new BrowserWindow();
   window.setMenu(null);
+
+  // Override origins from instagram
+  session.defaultSession.webRequest.onHeadersReceived((details, fn) => {
+    if (isInstagram(details.url)) {
+      // eslint-disable-next-line no-param-reassign
+      details.responseHeaders['access-control-allow-origin'] = ['*'];
+    }
+
+    fn({ cancel: false, responseHeaders: details.responseHeaders });
+  });
 
   if (isProd) {
     window.loadURL(format({
