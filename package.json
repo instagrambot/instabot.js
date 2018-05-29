@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "license": "Apache-2.0",
   "scripts": {
-    "start": "electron main.js",
-    "start:prod": "NODE_ENV=production electron main.js",
+    "start": "electron main",
+    "start:prod": "NODE_ENV=production electron main",
     "build": "NODE_ENV=production poi build --generate-stats dist/stats.json",
     "test": "jest --colors",
     "lint": "eslint src/**/*.js"
