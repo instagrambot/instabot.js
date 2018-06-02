@@ -16,9 +16,12 @@ module.exports = () => {
     const headers = details.requestHeaders;
 
     if (isInstagram(details.url)) {
+      delete headers['x-cookie'];
+
       headers.Origin = INSTAGRAM;
       headers.Referer = INSTAGRAM;
       headers['User-Agent'] = USER_AGENT;
+      headers['Cookie'] = headers['X-Cookie'];
     }
 
     fn({ cancel: false, requestHeaders: headers });
@@ -26,8 +29,11 @@ module.exports = () => {
 
   webRequest.onHeadersReceived((details, fn) => {
     const headers = details.responseHeaders;
+    const setCookie = JSON.stringify(headers['set-cookie']);
 
     if (isInstagram(details.url)) {
+      headers['x-set-cookie'] = [setCookie];
+      headers['access-control-expose-headers'] = ['x-set-cookie'];
       headers['access-control-allow-origin'] = ['*'];
     }
 
