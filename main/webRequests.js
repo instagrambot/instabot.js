@@ -5,7 +5,7 @@ const { session } = require('electron');
 
 const INSTAGRAM = 'https://www.instagram.com/';
 const INSTAGRAM_REGEX = /^https?:\/\/www.instagram.com/;
-const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36 OPR/50.0.2762.67';
+const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36';
 
 const isInstagram = url => INSTAGRAM_REGEX.test(url);
 
