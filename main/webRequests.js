@@ -21,7 +21,7 @@ module.exports = () => {
       headers.Origin = INSTAGRAM;
       headers.Referer = INSTAGRAM;
       headers['User-Agent'] = USER_AGENT;
-      headers['Cookie'] = headers['X-Cookie'];
+      headers.Cookie = headers['X-Cookie'];
     }
 
     fn({ cancel: false, requestHeaders: headers });
@@ -34,6 +34,7 @@ module.exports = () => {
     if (isInstagram(details.url)) {
       headers['x-set-cookie'] = [setCookie];
       headers['access-control-expose-headers'] = ['x-set-cookie'];
+      headers['access-control-allow-headers'] = ['x-instagram-ajax, x-requested-with'];
       headers['access-control-allow-origin'] = ['*'];
     }
 
