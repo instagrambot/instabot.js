@@ -21,8 +21,9 @@ module.exports = () => {
       headers['user-agent'] = USER_AGENT;
       headers['x-instagram-ajax'] = 1;
       headers['x-requested-with'] = 'XMLHttpRequest';
-      headers.Cookie = headers['x-cookie'];
 
+      // Allow xhr to set cookies
+      headers.Cookie = headers['x-cookie'];
       delete headers['x-cookie'];
     }
 
@@ -34,10 +35,12 @@ module.exports = () => {
     const setCookie = JSON.stringify(headers['set-cookie']);
 
     if (isInstagram(details.url)) {
-      headers['x-set-cookie'] = [setCookie];
       headers['access-control-expose-headers'] = ['x-set-cookie'];
       headers['access-control-allow-headers'] = ['x-csrftoken, x-instagram-gis'];
       headers['access-control-allow-origin'] = ['*'];
+
+      // Allow xhr to read cookies
+      headers['x-set-cookie'] = [setCookie];
     }
 
     fn({ cancel: false, responseHeaders: headers });
