@@ -16,12 +16,14 @@ module.exports = () => {
     const headers = details.requestHeaders;
 
     if (isInstagram(details.url)) {
-      delete headers['x-cookie'];
-
       headers.Origin = INSTAGRAM;
       headers.Referer = INSTAGRAM;
-      headers['User-Agent'] = USER_AGENT;
-      headers.Cookie = headers['X-Cookie'];
+      headers['user-agent'] = USER_AGENT;
+      headers['x-instagram-ajax'] = 1;
+      headers['x-requested-with'] = 'XMLHttpRequest';
+      headers.Cookie = headers['x-cookie'];
+
+      delete headers['x-cookie'];
     }
 
     fn({ cancel: false, requestHeaders: headers });
@@ -34,7 +36,7 @@ module.exports = () => {
     if (isInstagram(details.url)) {
       headers['x-set-cookie'] = [setCookie];
       headers['access-control-expose-headers'] = ['x-set-cookie'];
-      headers['access-control-allow-headers'] = ['x-instagram-ajax, x-requested-with'];
+      headers['access-control-allow-headers'] = ['x-csrftoken, x-instagram-gis'];
       headers['access-control-allow-origin'] = ['*'];
     }
 
