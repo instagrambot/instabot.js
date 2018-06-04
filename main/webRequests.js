@@ -23,7 +23,7 @@ module.exports = () => {
       headers['x-requested-with'] = 'XMLHttpRequest';
 
       // Allow xhr to set cookies
-      headers.Cookie = headers['x-cookie'];
+      headers.cookie = headers['x-cookie'];
       delete headers['x-cookie'];
     }
 
@@ -36,7 +36,7 @@ module.exports = () => {
 
     if (isInstagram(details.url)) {
       headers['access-control-expose-headers'] = ['x-set-cookie'];
-      headers['access-control-allow-headers'] = ['x-csrftoken, x-instagram-gis'];
+      headers['access-control-allow-headers'] = ['x-cookie, x-csrftoken, x-instagram-gis'];
       headers['access-control-allow-origin'] = ['*'];
 
       // Allow xhr to read cookies
