@@ -2,7 +2,6 @@
 
 import { get } from 'lodash';
 import crypto from 'crypto';
-import deepmerge from 'deepmerge';
 import axios from 'axios';
 import toFormData from 'object-to-formdata';
 import Cookies from './cookies';
@@ -51,7 +50,7 @@ export default class Http {
       delete opts.form;
     }
 
-    return deepmerge({ headers }, opts);
+    return { headers, ...opts };
   }
 
   async request(options = {}) {
@@ -74,5 +73,3 @@ export default class Http {
     return this.request({ method: 'POST', url, ...options });
   }
 }
-
-window.http = new Http();

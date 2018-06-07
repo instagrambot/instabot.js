@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
-import '@/lib/instagram2/http';
+import '@/lib/instagram2';
 
 import '@/styles/index.scss';
 import 'ionicons/dist/css/ionicons.css';
