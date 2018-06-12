@@ -25,7 +25,7 @@ function ApiError(message, response) {
   return error;
 }
 
-export default class Instagram2 {
+export default class Instagram {
   constructor() {
     this.http = new Http();
   }
