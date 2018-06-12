@@ -16,12 +16,15 @@ module.exports = () => {
     const headers = details.requestHeaders;
 
     if (isInstagram(details.url)) {
-      delete headers['x-cookie'];
-
       headers.Origin = INSTAGRAM;
       headers.Referer = INSTAGRAM;
-      headers['User-Agent'] = USER_AGENT;
-      headers['Cookie'] = headers['X-Cookie'];
+      headers['user-agent'] = USER_AGENT;
+      headers['x-instagram-ajax'] = 1;
+      headers['x-requested-with'] = 'XMLHttpRequest';
+
+      // Allow xhr to set cookies
+      headers.cookie = headers['x-cookie'];
+      delete headers['x-cookie'];
     }
 
     fn({ cancel: false, requestHeaders: headers });
@@ -32,9 +35,12 @@ module.exports = () => {
     const setCookie = JSON.stringify(headers['set-cookie']);
 
     if (isInstagram(details.url)) {
-      headers['x-set-cookie'] = [setCookie];
       headers['access-control-expose-headers'] = ['x-set-cookie'];
+      headers['access-control-allow-headers'] = ['x-cookie, x-csrftoken, x-instagram-gis, content-type'];
       headers['access-control-allow-origin'] = ['*'];
+
+      // Allow xhr to read cookies
+      headers['x-set-cookie'] = [setCookie];
     }
 
     fn({ cancel: false, responseHeaders: headers });
