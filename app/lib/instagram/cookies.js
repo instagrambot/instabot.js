@@ -1,9 +1,8 @@
 /* eslint-disable consistent-return */
+/* eslint-disable no-param-reassign */
 
-import { uniqBy, omit } from 'lodash';
-import request from 'request-promise-native';
+import { uniqBy } from 'lodash';
 import { Cookie } from 'tough-cookie';
-import { BASE_URL } from './constants';
 
 export default class Cookies {
   constructor(values = []) {
@@ -27,17 +26,17 @@ export default class Cookies {
   }
 
   parse(setCookie) {
-    const cookies = setCookie
-      .map(Cookie.parse)
-      .map(cookie => omit(cookie.toJSON(), ['expires', 'creation', 'maxAge']));
-
+    const items = JSON.parse(setCookie || '[]');
+    const cookies = items.map(Cookie.parse);
     this.values = uniqBy([...cookies, ...this.values], 'key');
   }
 
-  toJar() {
-    const jar = request.jar();
-    this.values.forEach(x => jar.setCookie(Cookie.fromJSON(x), BASE_URL));
-    return jar;
+  toString() {
+    return this.values.map(x => `${x.key}=${x.value}`).join('; ');
+  }
+
+  toCookies() {
+    return this.values.map(x => x.toString());
   }
 
   valueOf(key) {

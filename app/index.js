@@ -1,7 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
-import '@/lib/instagram2';
-
 import '@/styles/index.scss';
 import 'ionicons/dist/css/ionicons.css';
 import promiseFinally from 'promise.prototype.finally';
