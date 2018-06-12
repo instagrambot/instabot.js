@@ -19,6 +19,8 @@ export default class Instagram2 {
   }
 
   async auth(username, password) {
+    this.http.cookies.clear();
+
     const resp = await this.http.post('/accounts/login/ajax/', {
       jar: true,
       form: { username, password },
@@ -30,4 +32,4 @@ export default class Instagram2 {
   }
 }
 
-// window.ig2 = new Instagram2();
+window.ig2 = new Instagram2();

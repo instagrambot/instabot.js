@@ -35,6 +35,10 @@ export default class Cookies {
     return this.values.map(x => `${x.key}=${x.value}`).join('; ');
   }
 
+  toCookies() {
+    return this.values.map(x => x.toString());
+  }
+
   valueOf(key) {
     const cookie = this.values.find(x => x.key === key);
     if (cookie) return cookie.value;
