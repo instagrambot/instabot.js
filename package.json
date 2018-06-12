@@ -48,7 +48,6 @@
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
     "redux-localstorage": "^0.4.1",
-    "request-promise-native": "^1.0.5",
     "tough-cookie": "^2.3.4",
     "yup": "^0.25.1"
   },
