@@ -13,14 +13,12 @@ export const reducer = (state = [], { type, payload }) => {
   }
 };
 
-export default {
-  create: payload => ({
-    type: ACCOUNTS_CREATE,
-    payload,
-  }),
+export const create = payload => ({
+  type: ACCOUNTS_CREATE,
+  payload,
+});
 
-  remove: id => ({
-    type: ACCOUNTS_REMOVE,
-    payload: id,
-  }),
-};
+export const remove = id => ({
+  type: ACCOUNTS_REMOVE,
+  payload: id,
+});

@@ -2,9 +2,11 @@
 
 import { createStore, combineReducers, compose } from 'redux';
 import persistState from 'redux-localstorage';
-import { reducer as accounts } from './accounts';
+import * as accounts from './accounts';
 
-const reducers = combineReducers({ accounts });
+const reducers = combineReducers({
+  accounts: accounts.reducer,
+});
 
 const enhancer = compose(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),

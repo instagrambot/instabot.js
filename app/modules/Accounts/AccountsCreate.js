@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 
 import { openExternal } from '@/lib/utils';
 import Instagram from '@/lib/instagram';
-import Accounts from '@/store/accounts';
+import * as Accounts from '@/store/accounts';
 import Widget from '@/components/Widget';
 import Control from '@/components/Control';
 
