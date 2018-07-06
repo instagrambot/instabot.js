@@ -1,8 +1,8 @@
 {
   "name": "instabot.js",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "main": "app/index.ts",
   "repository": "git@github.com:instagrambot/instabot.js.git",
   "author": "Ruslan Tatyshev <ruslan.tatyshev@gmail.com>",
-  "license": "MIT"
+  "license": "Apache-2.0"
 }
