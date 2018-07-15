@@ -4,7 +4,8 @@
   "main": "app/index.ts",
   "scripts": {
     "start": "electron main/index.js",
-    "build": "poi build"
+    "build": "poi build",
+    "lint": "eslint app/**/*.ts"
   },
   "repository": "git@github.com:instagrambot/instabot.js.git",
   "author": "Ruslan Tatyshev <ruslan.tatyshev@gmail.com>",
@@ -14,10 +15,24 @@
     "@poi/plugin-typescript": "^10.2.0",
     "electron": "^2.0.5",
     "electron-devtools-installer": "^2.2.4",
+    "eslint": "4.19.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.10.0",
+    "eslint-plugin-typescript": "^0.12.0",
     "poi": "^10.2.9",
-    "typescript": "^2.9.2"
+    "typescript": "^2.9.2",
+    "typescript-eslint-parser": "^16.0.1"
   },
   "dependencies": {
     "lodash": "^4.17.10"
+  },
+  "eslintConfig":{
+    "parser": "typescript-eslint-parser",
+    "extends": "airbnb",
+    "plugins": [
+      "typescript"
+    ]
   }
 }
