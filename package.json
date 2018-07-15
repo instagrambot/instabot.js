@@ -8,9 +8,14 @@
   "repository": "git@github.com:instagrambot/instabot.js.git",
   "author": "Ruslan Tatyshev <ruslan.tatyshev@gmail.com>",
   "license": "Apache-2.0",
+  "externalDependencies": [
+  ],
   "devDependencies": {
     "electron": "^2.0.5",
     "electron-devtools-installer": "^2.2.4",
     "poi": "^10.2.9"
+  },
+  "dependencies": {
+    "lodash": "^4.17.10"
   }
 }
