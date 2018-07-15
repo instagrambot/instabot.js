@@ -1,8 +1,16 @@
 {
   "name": "instabot.js",
   "version": "0.0.0",
-  "main": "app/index.ts",
+  "main": "app/index.js",
+  "scripts": {
+    "start": "electron main/index.js"
+  },
   "repository": "git@github.com:instagrambot/instabot.js.git",
   "author": "Ruslan Tatyshev <ruslan.tatyshev@gmail.com>",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "electron": "^2.0.5",
+    "electron-devtools-installer": "^2.2.4",
+    "poi": "^10.2.9"
+  }
 }
