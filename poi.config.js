@@ -12,6 +12,10 @@ module.exports = {
   publicPath: './',
   sourceMap: isProd ? false : 'eval-source-map',
 
+  plugins: [
+    require('@poi/plugin-typescript')()
+  ],
+
   extendWebpack(config) {
     config.target('electron-renderer');
     config.externals(fromPairs(externals));
