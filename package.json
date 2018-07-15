@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "main": "app/index.ts",
   "scripts": {
-    "start": "electron main/index.js"
+    "start": "electron main/index.js",
+    "build": "poi build"
   },
   "repository": "git@github.com:instagrambot/instabot.js.git",
   "author": "Ruslan Tatyshev <ruslan.tatyshev@gmail.com>",
