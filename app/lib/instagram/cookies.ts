@@ -5,7 +5,7 @@ import { uniqBy } from 'lodash';
 import { Cookie } from 'tough-cookie';
 
 export default class Cookies {
-  values: any[]
+  values: any[];
 
   constructor(values = []) {
     this.values = values;
@@ -34,15 +34,15 @@ export default class Cookies {
   }
 
   toString() {
-    return this.values.map(x => `${x.key}=${x.value}`).join('; ');
+    return this.values.map((x) => `${x.key}=${x.value}`).join('; ');
   }
 
   toCookies() {
-    return this.values.map(x => x.toString());
+    return this.values.map((x) => x.toString());
   }
 
   valueOf(key: string) {
-    const cookie = this.values.find(x => x.key === key);
-    if (cookie) return cookie.value;
+    const cookie = this.values.find((x) => x.key === key);
+    if (cookie) { return cookie.value; }
   }
 }

@@ -1,11 +1,11 @@
 /* eslint-disable no-param-reassign */
 
-import { get } from 'lodash';
-import crypto from 'crypto';
-import axios from 'axios';
-import toFormData from 'object-to-formdata';
-import Cookies from '@/lib/instagram/cookies';
 import { BASE_URL } from '@/lib/instagram/constants';
+import Cookies from '@/lib/instagram/cookies';
+import axios from 'axios';
+import crypto from 'crypto';
+import { get } from 'lodash';
+import toFormData from 'object-to-formdata';
 
 const RHX_REGEX = /"rhx_gis":"(.+?)"/;
 
@@ -15,12 +15,12 @@ const X_CSRFTOKEN = 'x-csrftoken';
 const X_INSTAGRAM_GIS = 'x-instagram-gis';
 
 export default class Http {
-  axios = axios.create({ baseURL: BASE_URL })
+  axios = axios.create({ baseURL: BASE_URL });
   cookies = new Cookies();
-  rhx: string | undefined
+  rhx: string | undefined;
 
   async prepare() {
-    if (!this.cookies.isEmpty()) return;
+    if (!this.cookies.isEmpty()) { return; }
 
     const resp = await this.axios.get('/');
     const setCookies = resp.headers[X_SET_COOKIE];
@@ -61,7 +61,7 @@ export default class Http {
     const resp = await this.axios(opts);
     const setCookie = resp.headers[X_SET_COOKIE];
 
-    if (options.jar) this.cookies.parse(setCookie);
+    if (options.jar) { this.cookies.parse(setCookie); }
 
     return resp;
   }

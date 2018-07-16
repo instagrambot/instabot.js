@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 
-import { get } from 'lodash';
 import Http from '@/lib/instagram/http';
+import { get } from 'lodash';
 
 import {
   COMMENTS_GRAPH,
@@ -16,11 +16,11 @@ import {
 } from '@/lib/instagram/constants';
 
 interface IApiError extends Error {
-  response: any
+  response: any;
 }
 
 function ApiError(message: string, response: any) {
-  const error = <IApiError> new Error();
+  const error = new Error() as IApiError;
 
   error.name = 'ApiError';
   error.message = message;
@@ -32,7 +32,7 @@ function ApiError(message: string, response: any) {
 type Id = string | number;
 
 export default class Instagram {
-  http: Http
+  http: Http;
 
   constructor() {
     this.http = new Http();
@@ -55,7 +55,7 @@ export default class Instagram {
       form: { username, password },
     });
 
-    if (get(resp, 'data.authenticated')) return resp.data;
+    if (get(resp, 'data.authenticated')) { return resp.data; }
 
     throw ApiError('Incorrect login or password', resp);
   }
@@ -81,8 +81,8 @@ export default class Instagram {
 
   async following(userId: Id, limit: number = 20) {
     const resp = await this.graphql(FOLLOWING_GRAPH, {
-      id: String(userId),
       first: limit,
+      id: String(userId),
     });
 
     return get(resp.data, 'data.user.edge_follow');
@@ -235,8 +235,8 @@ export default class Instagram {
 
   async shortcodeLikers(shortcode: string, limit: number = 20) {
     const resp = await this.graphql(LIKERS_SHORTCODE_GRAPH, {
-      shortcode,
       first: limit,
+      shortcode,
     });
 
     return get(resp.data, 'data.shortcode_media');
@@ -244,8 +244,8 @@ export default class Instagram {
 
   async shortcodeComments(shortcode: string, limit: number = 20) {
     const resp = await this.graphql(COMMENTS_GRAPH, {
-      shortcode,
       first: limit,
+      shortcode,
     });
 
     return get(resp.data, 'data.shortcode_media.edge_media_to_comment');

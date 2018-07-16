@@ -13,14 +13,15 @@
   "externalDependencies": [],
   "devDependencies": {
     "@poi/plugin-typescript": "^10.2.0",
+    "@types/axios": "^0.14.0",
+    "@types/lodash": "^4.14.112",
+    "@types/tough-cookie": "^2.3.3",
     "electron": "^2.0.5",
     "electron-devtools-installer": "^2.2.4",
     "poi": "^10.2.9",
+    "tslint": "^5.11.0",
     "typescript": "^2.9.2",
-    "typescript-eslint-parser": "^16.0.1",
-    "@types/axios": "^0.14.0",
-    "@types/lodash": "^4.14.112",
-    "@types/tough-cookie": "^2.3.3"
+    "typescript-eslint-parser": "^16.0.1"
   },
   "dependencies": {
     "lodash": "^4.17.10",
