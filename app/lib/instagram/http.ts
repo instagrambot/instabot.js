@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 import { BASE_URL } from '@/lib/instagram/constants';
 import Cookies from '@/lib/instagram/cookies';
 import axios from 'axios';

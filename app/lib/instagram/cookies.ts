@@ -1,6 +1,3 @@
-/* eslint-disable consistent-return */
-/* eslint-disable no-param-reassign */
-
 import { uniqBy } from 'lodash';
 import { Cookie } from 'tough-cookie';
 

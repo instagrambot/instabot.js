@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 import Http from '@/lib/instagram/http';
 import { get } from 'lodash';
 
