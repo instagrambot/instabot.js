@@ -5,7 +5,7 @@
   "scripts": {
     "start": "electron main/index.js",
     "build": "poi build",
-    "lint": "eslint app/**/*.ts"
+    "lint": "tslint app/**/*.*"
   },
   "repository": "git@github.com:instagrambot/instabot.js.git",
   "author": "Ruslan Tatyshev <ruslan.tatyshev@gmail.com>",
