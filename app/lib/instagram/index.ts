@@ -33,6 +33,7 @@ type Id = string | number;
 
 export default class Instagram {
   http: Http
+
   constructor() {
     this.http = new Http();
   }
