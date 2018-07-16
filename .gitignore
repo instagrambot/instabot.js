@@ -2,3 +2,4 @@ node_modules/
 **/yarn.lock
 *.lerna_backup
 dist
+package-lock.json
