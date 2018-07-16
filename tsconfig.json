@@ -1,11 +1,15 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "module": "commonjs",
     "jsx": "react",
     "strict": true,
     "esModuleInterop": true,
     "baseUrl": ".",
+    "typeRoots": [
+      "node_modules/@types",
+      "./types"
+    ],
     "paths": {
       "@/*": ["app/*"]
     }

@@ -23,12 +23,16 @@
     "eslint-plugin-typescript": "^0.12.0",
     "poi": "^10.2.9",
     "typescript": "^2.9.2",
-    "typescript-eslint-parser": "^16.0.1"
+    "typescript-eslint-parser": "^16.0.1",
+    "@types/axios": "^0.14.0",
+    "@types/lodash": "^4.14.112",
+    "@types/tough-cookie": "^2.3.3"
   },
   "dependencies": {
-    "lodash": "^4.17.10"
+    "lodash": "^4.17.10",
+    "object-to-formdata": "^1.5.2"
   },
-  "eslintConfig":{
+  "eslintConfig": {
     "parser": "typescript-eslint-parser",
     "extends": "airbnb",
     "plugins": [
