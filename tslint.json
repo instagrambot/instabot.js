@@ -1,13 +1,13 @@
 {
   "defaultSeverity": "error",
-  "extends": [
-    "tslint:recommended"
-  ],
+  "extends": ["tslint:latest", "tslint-react"],
   "jsRules": {},
   "rules": {
     "object-literal-sort-keys": false,
     "member-access": [true, "no-public"],
-    "quotemark": [true, "single", "avoid-escape", "avoid-template"]
+    "quotemark": [true, "single", "avoid-escape", "avoid-template"],
+    "no-implicit-dependencies": false,
+    "no-submodule-imports": false
   },
   "rulesDirectory": []
 }

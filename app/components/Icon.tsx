@@ -11,7 +11,7 @@ export default class extends Component<IIconProps, {}> {
 
   render() {
     return (
-      <i className={`ion-${this.props.name} b-icon`} />
+      <i className={`ion-${this.props.name} b-icon`}/>
     );
   }
 }
