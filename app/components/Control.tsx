@@ -13,10 +13,7 @@ interface IControlProps {
   onChange: (event: Event) => void;
 }
 
-interface IControlState {
-}
-
-export default class extends Component<IControlProps, IControlState> {
+export default class extends Component<IControlProps, {}> {
   static defaultProps = {
     type: 'string',
     label: '',

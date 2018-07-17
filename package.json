@@ -5,7 +5,7 @@
   "scripts": {
     "start": "electron main/index.js",
     "build": "poi build",
-    "lint": "tslint app/**/*.*"
+    "lint": "tslint app/**/*.ts app/**/*.tsx"
   },
   "repository": "git@github.com:instagrambot/instabot.js.git",
   "author": "Ruslan Tatyshev <ruslan.tatyshev@gmail.com>",
@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@types/prop-types": "^15.5.3",
+    "@types/redux-localstorage": "^1.0.8",
     "classnames": "^2.2.6",
     "formik": "^1.0.1",
     "lodash": "^4.17.10",
@@ -37,6 +38,7 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-redux": "^5.0.7",
+    "redux-localstorage": "^0.4.1",
     "yup": "^0.25.1"
   }
 }
