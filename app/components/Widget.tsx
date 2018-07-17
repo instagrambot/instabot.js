@@ -7,13 +7,13 @@ interface IWidgetProps {
   label: string;
   labelIcon: string;
   onLabelClick: (event: MouseEvent<HTMLElement>) => void;
-  className: string | null;
+  className ?: string;
 }
 
 export default class extends Component<IWidgetProps, {}> {
   static displayName = 'Widget';
 
-  static defaultProps: Partial<IWidgetProps> = {
+  static defaultProps: IWidgetProps = {
     label: 'Widget',
     labelIcon: 'ios-arrow-back',
     onLabelClick: noop,
