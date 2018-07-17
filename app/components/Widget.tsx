@@ -10,7 +10,7 @@ interface IWidgetProps {
   className: string | null;
 }
 
-export default class Widget extends Component<IWidgetProps, {}> {
+export default class extends Component<IWidgetProps, {}> {
   static displayName = 'Widget';
 
   static defaultProps: Partial<IWidgetProps> = {

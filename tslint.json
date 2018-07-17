@@ -7,7 +7,8 @@
     "member-access": [true, "no-public"],
     "quotemark": [true, "single", "avoid-escape", "avoid-template"],
     "no-implicit-dependencies": false,
-    "no-submodule-imports": false
+    "no-submodule-imports": false,
+    "no-this-assignment": false,
   },
   "rulesDirectory": []
 }
