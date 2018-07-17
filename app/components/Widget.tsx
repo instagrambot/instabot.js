@@ -5,7 +5,7 @@ import React, { Component, MouseEvent } from 'react';
 
 interface IWidgetProps {
   label: string;
-  labelIcon: string;
+  labelIcon ?: string;
   onLabelClick: (event: MouseEvent<HTMLElement>) => void;
   className ?: string;
 }

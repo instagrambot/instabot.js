@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 
 interface IIconProps {
-  name: string;
+  name ?: string;
 }
 
 export default class extends Component<IIconProps, {}> {
